@@ -1,0 +1,86 @@
+// schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id       String  @id @default(cuid())
+  nom      String
+  prenom   String
+  email    String  @unique
+  password String
+  role     Role    @default(USER)
+  avatar   String? // ← AJOUTER CETTE LIGNE
+
+  posts     Post[]
+  comments  Comment[]
+  guides    Guide[]
+  createdAt DateTime  @default(now())
+}
+
+model Post {
+  id        String      @id @default(cuid())
+  title     String
+  content   String
+  section   PostSection @default(ASTUCE)
+  imageUrl  String?
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
+
+  comments Comment[]
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  imageUrl  String?
+  createdAt DateTime @default(now())
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
+
+  post   Post   @relation(fields: [postId], references: [id])
+  postId String
+}
+
+enum PostSection {
+  ALIMENTATION
+  SANTE
+  REPRODUCTION
+  ASTUCE
+}
+
+model Guide {
+  id          String @id @default(cuid())
+  title       String
+  // Ajout de la description (résumé court)
+  description String @db.VarChar(255)
+  content     String @db.Text
+  badge       String
+  color       String @default("bg-slate-50")
+  iconName    String
+  slug        String @unique
+
+  // Champs de gestion
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Optionnel : Lier le guide à l'admin qui l'a créé
+  authorId String?
+  author   User?   @relation(fields: [authorId], references: [id])
+
+  @@map("guides")
+}
