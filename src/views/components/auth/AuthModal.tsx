@@ -74,46 +74,35 @@ export default function AuthModal({
 
     try {
       if (isSignIn) {
-        // Login
+        // Login using server action
         const formData = new FormData();
         formData.append("email", data.email);
         formData.append("password", data.password);
 
-        const response = await fetch("/api/login", {
-          method: "POST",
-          body: formData,
-        });
-
-        const result = await response.json();
+        const result = await loginUser(formData);
 
         if (result.success) {
           login();
           onClose();
         } else {
-          setErrorMessage(result.error);
+          setErrorMessage(result.error ?? "Une erreur est survenue");
         }
       } else {
-        // Register
-        const response = await fetch("/api/users", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nom: data.nom,
-            prenom: data.prenom,
-            email: data.email,
-            password: data.password,
-          }),
-        });
+        // Register using server action
+        const formData = new FormData();
+        formData.append("firstName", data.prenom!);
+        formData.append("lastName", data.nom!);
+        formData.append("email", data.email);
+        formData.append("password", data.password);
 
-        const result = await response.json();
+        const result = await registerUser(null, formData);
 
-        if (response.ok) {
+        if (result.error) {
+          setErrorMessage(result.error);
+        } else {
+          // Registration successful, user is auto-logged in
           login();
           onClose();
-        } else {
-          setErrorMessage(result.error || "Erreur lors de l'inscription");
         }
       }
     } catch (error) {

@@ -34,7 +34,7 @@ export default function HomePage() {
                 asChild
                 size="lg"
                 className="bg-emerald-600 hover:bg-emerald-700 text-white">
-                <Link href="/blog">Lire les derniers articles</Link>
+                <Link href="/articles">Lire les derniers articles</Link>
               </Button>
               <Button
                 asChild

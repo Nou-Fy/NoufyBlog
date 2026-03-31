@@ -1,5 +1,4 @@
-import { getSessionUser } from "@/lib/auth";
-import { getUserProfileData } from "@/lib/services/user.services";
+import { getSessionUser, getUserProfileData } from "@/lib/auth";
 import { ProfileStats } from "@/views/components/ProfilStats";
 import { AvatarUpload } from "@/views/components/profil/avatar-upload";
 import { redirect } from "next/navigation";

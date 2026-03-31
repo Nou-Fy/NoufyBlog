@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/app/context/AuthContext";
 import { useRouter } from "next/navigation";
+import { loginUser } from "@/app/api/actions/login";
 import {
   Card,
   CardHeader,
@@ -14,24 +15,30 @@ import { Input } from "@/views/components/ui/input";
 import { Label } from "@/views/components/ui/label";
 import { Button } from "@/views/components/ui/button";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function SignInPage() {
   const { login } = useAuth();
   const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+    setIsLoading(true);
+    setError(null);
 
-    const res = await fetch("/api/login", { method: "POST", body: formData });
-    const result = await res.json();
+    const formData = new FormData(e.currentTarget);
+    const result = await loginUser(formData);
 
     if (result.success) {
       login(); // met à jour AuthContext
       router.push("/articles");
     } else {
-      alert(result.error); // tu peux remplacer par un composant d’erreur
+      setError(result.error);
     }
+
+    setIsLoading(false);
   };
 
   return (

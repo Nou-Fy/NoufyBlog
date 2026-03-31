@@ -1,4 +1,4 @@
-import { getIsAdmin } from "@/lib/services/auth-utils";
+import { getIsAdmin } from "@/lib/auth";
 import GuideClientPage from "./GuideClientPage";
 import { prisma } from "@/lib/prisma";
 

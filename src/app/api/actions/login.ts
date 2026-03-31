@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { comparePassword } from "@/lib/utils/hash";
+import { comparePassword } from "@/lib/password";
 import { cookies } from "next/headers";
 
 export async function loginUser(formData: FormData, event?: any) {
