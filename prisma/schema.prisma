@@ -65,7 +65,6 @@ enum PostSection {
 model Guide {
   id          String @id @default(cuid())
   title       String
-  // Ajout de la description (résumé court)
   description String @db.VarChar(255)
   content     String @db.Text
   badge       String
@@ -78,7 +77,6 @@ model Guide {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // Optionnel : Lier le guide à l'admin qui l'a créé
   authorId String?
   author   User?   @relation(fields: [authorId], references: [id])
 
