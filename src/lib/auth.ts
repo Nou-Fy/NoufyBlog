@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { hashPassword, comparePassword } from "@/lib/password";
+import "server-only"; // ← Assure que ce fichier est traité comme un module serveur
 
 export async function getSessionUser() {
   const cookieStore = await cookies();

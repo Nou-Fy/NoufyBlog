@@ -1,4 +1,3 @@
-// schema.prisma
 generator client {
   provider = "prisma-client-js"
 }
@@ -12,6 +11,39 @@ enum Role {
   ADMIN
 }
 
+enum PostSection {
+  ALIMENTATION
+  SANTE
+  REPRODUCTION
+  ASTUCE
+}
+
+enum Region {
+  ANALAMANGA
+  VAKINANKARATRA
+  ITASY
+  BONGOLAVA
+  DIANA
+  SAVA
+  SOFIA
+  BOENY
+  BETSIBOKA
+  MELAKY
+  ALAOTRA_MANGORO
+  ATSINANANA
+  ANALANJIROFO
+  AMORON_I_MANIA
+  HAUTE_MATSIATRA
+  VATOVAVY
+  FITOVINANY
+  ATSIMO_ATSINANANA
+  IHOROMBE
+  ATSIMO_ANDREFANA
+  ANDROY
+  ANOSY
+  MENABE
+}
+
 model User {
   id       String  @id @default(cuid())
   nom      String
@@ -19,27 +51,38 @@ model User {
   email    String  @unique
   password String
   role     Role    @default(USER)
-  avatar   String? // ← AJOUTER CETTE LIGNE
+  avatar   String?
+  region   Region?
+  archived Boolean @default(false)
 
-  posts     Post[]
-  comments  Comment[]
-  guides    Guide[]
-  createdAt DateTime  @default(now())
+  createdAt DateTime @default(now())
+
+  posts       Post[]
+  comments    Comment[]
+  guides      Guide[]
+  discussions Discussion[]
+  responses   Response[]
+
+  @@index([email])
 }
 
 model Post {
-  id        String      @id @default(cuid())
-  title     String
-  content   String
-  section   PostSection @default(ASTUCE)
-  imageUrl  String?
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
+  id       String      @id @default(cuid())
+  title    String
+  content  String
+  section  PostSection @default(ASTUCE)
+  imageUrl String?
+  archived Boolean     @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   author   User   @relation(fields: [authorId], references: [id])
   authorId String
 
   comments Comment[]
+
+  @@index([authorId])
 }
 
 model Comment {
@@ -51,15 +94,16 @@ model Comment {
   author   User   @relation(fields: [authorId], references: [id])
   authorId String
 
-  post   Post   @relation(fields: [postId], references: [id])
-  postId String
-}
+  // ⚠️ rendu flexible (post OU discussion)
+  post   Post?   @relation(fields: [postId], references: [id])
+  postId String?
 
-enum PostSection {
-  ALIMENTATION
-  SANTE
-  REPRODUCTION
-  ASTUCE
+  discussion   Discussion? @relation(fields: [discussionId], references: [id])
+  discussionId String?
+
+  @@index([authorId])
+  @@index([postId])
+  @@index([discussionId])
 }
 
 model Guide {
@@ -72,13 +116,58 @@ model Guide {
   iconName    String
   slug        String @unique
 
-  // Champs de gestion
-  published Boolean  @default(true)
+  published Boolean @default(true)
+  archived  Boolean @default(false)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   authorId String?
   author   User?   @relation(fields: [authorId], references: [id])
 
+  @@index([authorId])
   @@map("guides")
+}
+
+model Discussion {
+  id       String  @id @default(cuid())
+  content  String  @db.VarChar(500)
+  imageUrl String?
+  archived Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
+
+  comments  Comment[]
+  responses Response[]
+
+  @@index([authorId])
+}
+
+model Response {
+  id       String  @id @default(cuid())
+  content  String  @db.VarChar(500)
+  imageUrl String?
+  archived Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
+
+  discussion   Discussion @relation(fields: [discussionId], references: [id])
+  discussionId String
+
+  // 🔥 réponses imbriquées (optionnel mais puissant)
+  parentId String?
+  parent   Response?  @relation("ResponseToResponse", fields: [parentId], references: [id])
+  replies  Response[] @relation("ResponseToResponse")
+
+  @@index([discussionId])
+  @@index([authorId])
+  @@index([parentId])
 }

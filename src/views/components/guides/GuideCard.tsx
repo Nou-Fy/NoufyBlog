@@ -38,9 +38,9 @@ export function GuideCard({ guide, isAdmin, onRefresh }: GuideCardProps) {
 
   return (
     <>
-      <Card className="relative group border-none shadow-md hover:shadow-xl transition-all duration-300 bg-slate-50">
+      <Card className="relative group flex flex-col border-none shadow-md hover:shadow-xl transition-all duration-300 bg-slate-50 min-h-[350px]">
         {isAdmin && (
-          <div className="absolute top-3 right-3 flex gap-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="absolute top-4 right-4 flex gap-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -57,26 +57,26 @@ export function GuideCard({ guide, isAdmin, onRefresh }: GuideCardProps) {
           </div>
         )}
 
-        <CardHeader>
-          <div className="p-3 rounded-2xl bg-white w-fit mb-4 shadow-sm group-hover:scale-110 transition-transform">
-            <Bird className="w-8 h-8 text-emerald-600" />
+        <CardHeader className="p-6 pb-2">
+          <div className="p-4 rounded-2xl bg-white w-fit mb-5 shadow-sm group-hover:scale-110 transition-transform">
+            <Bird className="w-10 h-10 text-emerald-600" />
           </div>
-          <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1">
+          <div className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">
             {guide.badge}
           </div>
-          <CardTitle className="text-2xl text-slate-900">
+          <CardTitle className="text-3xl text-slate-900 leading-tight">
             {guide.title}
           </CardTitle>
         </CardHeader>
 
-        <CardContent className="space-y-4">
-          <p className="text-slate-700 text-sm leading-relaxed line-clamp-3">
+        <CardContent className="p-6 pt-2 flex flex-col flex-1 space-y-6">
+          <p className="text-slate-700 text-base leading-relaxed line-clamp-4 flex-1">
             {guide.description}
           </p>
           <button
             onClick={openModal}
-            className="flex items-center text-sm font-bold text-emerald-700 hover:text-emerald-800 transition-colors">
-            Lire le guide <ArrowRight className="ml-2 w-4 h-4" />
+            className="flex items-center text-base font-bold text-emerald-700 hover:text-emerald-800 transition-colors mt-auto">
+            Lire le guide <ArrowRight className="ml-2 w-5 h-5" />
           </button>
         </CardContent>
       </Card>
@@ -85,7 +85,6 @@ export function GuideCard({ guide, isAdmin, onRefresh }: GuideCardProps) {
 
       {/* --- DIALOG DE MODIFICATION --- */}
       <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
-        {/* max-w-[650px] pour la largeur et showCloseButton={false} pour éviter le double bouton */}
         <DialogContent
           className="sm:max-w-[650px] w-[95vw] p-0 border-none bg-transparent shadow-none"
           showCloseButton={false}>
