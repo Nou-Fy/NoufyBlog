@@ -1,6 +1,6 @@
 "use client";
 
-import { getCommunityStats } from "@/app/api/stats/route";
+import { getCommunityStats } from "@/lib/action/stats/route";
 import { useState, useEffect } from "react";
 
 export interface CommunityStatsData {

@@ -1,26 +1,27 @@
-import React from "react";
-import { PrismaDiscussion } from "@/types/community";
+// views/components/community/RecentDiscutssion.tsx
+
 import DiscussionItem from "./DiscussionItem";
 
 interface RecentDiscussionsProps {
-  discussions: PrismaDiscussion[];
+  discussions: any[]; // Remplace par ton type PrismaDiscussion[]
+  isAuthenticated: boolean;
+  userId: string | null; // Ajoute cette ligne
 }
 
 export default function RecentDiscussions({
   discussions,
+  isAuthenticated,
+  userId,
 }: RecentDiscussionsProps) {
-  if (discussions.length === 0) {
-    return (
-      <div className="p-12 text-center bg-slate-50 rounded-xl border-2 border-dashed border-slate-200">
-        <p className="text-slate-500">Aucune discussion trouvée.</p>
-      </div>
-    );
-  }
-
   return (
-    <div className="space-y-4">
+    <div className="grid gap-4">
       {discussions.map((discussion) => (
-        <DiscussionItem key={discussion.id} discussion={discussion} />
+        <DiscussionItem
+          key={discussion.id}
+          discussion={discussion}
+          isAuthenticated={isAuthenticated}
+          userId={userId} // On fait descendre l'ID d'un cran supplémentaire
+        />
       ))}
     </div>
   );

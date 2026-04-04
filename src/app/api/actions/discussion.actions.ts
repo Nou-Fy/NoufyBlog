@@ -43,7 +43,13 @@ export async function getPaginatedDiscussions(page = 1, sortBy = "newest") {
         skip: skip,
         orderBy: orderBy,
         include: {
-          author: { select: { nom: true } },
+          author: {
+            // CORRECTION : On ajoute 'id' pour correspondre au type PrismaDiscussion
+            select: {
+              id: true,
+              nom: true,
+            },
+          },
           _count: { select: { comments: true } },
         },
       }),
@@ -52,10 +58,11 @@ export async function getPaginatedDiscussions(page = 1, sortBy = "newest") {
 
     return {
       discussions,
-      totalPages: Math.ceil(total / pageSize),
+      totalPages: Math.ceil(total / pageSize) || 1, // Sécurité contre division par 0
       currentPage: page,
     };
   } catch (error) {
-    return { discussions: [], totalPages: 0, currentPage: 1 };
+    console.error("Erreur Prisma:", error);
+    return { discussions: [], totalPages: 1, currentPage: 1 };
   }
 }
