@@ -4,11 +4,13 @@ import React, { useState } from "react";
 import { MessageSquare, Lock } from "lucide-react";
 import { PrismaDiscussion } from "@/types/community";
 import DiscussionDrawer from "./DiscussionDrawer";
+import { useRouter } from "next/navigation";
+import DeleteButton from "../common/DeleteButton";
 
 interface DiscussionItemProps {
   discussion: PrismaDiscussion;
-  isAuthenticated: boolean; // Reçu du parent
-  userId: string | null; // ID de l'utilisateur connecté, à passer depuis le parent si nécessaire
+  isAuthenticated: boolean;
+  userId: string | null;
 }
 
 export default function DiscussionItem({
@@ -17,10 +19,36 @@ export default function DiscussionItem({
   userId,
 }: DiscussionItemProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+
+  // Seul l'auteur peut voir le bouton de suppression
+  const isAuthor = userId === discussion.author.id;
 
   const handleOpen = () => {
     if (isAuthenticated) setIsOpen(true);
   };
+
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(`/api/discussions/${discussion.id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || "Erreur lors de l'archivage");
+      }
+
+      // Force Next.js à re-fetch les données du serveur (où archived est désormais true)
+      router.refresh();
+    } catch (error: any) {
+      console.error("Échec de l'action :", error.message);
+      alert(error.message);
+    }
+  };
+
+  // Sécurité supplémentaire : si la donnée arrive déjà archivée, on ne l'affiche pas
+  if (discussion.archived) return null;
 
   return (
     <>
@@ -35,11 +63,23 @@ export default function DiscussionItem({
           <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-2 py-1 rounded">
             Discussion
           </span>
-          {!isAuthenticated && <Lock className="w-3 h-3 text-slate-400" />}
+
+          <div className="flex items-center gap-2">
+            {/* Bouton de suppression unique et réutilisable */}
+            {isAuthenticated && isAuthor && (
+              <DeleteButton
+                onConfirm={handleDelete}
+                itemName="votre discussion"
+              />
+            )}
+            {!isAuthenticated && <Lock className="w-3 h-3 text-slate-400" />}
+          </div>
         </div>
 
         <h3
-          className={`font-bold text-slate-800 mb-3 line-clamp-2 ${isAuthenticated && "group-hover:text-emerald-700"}`}>
+          className={`font-bold text-slate-800 mb-3 line-clamp-2 ${
+            isAuthenticated && "group-hover:text-emerald-700"
+          }`}>
           {discussion.content}
         </h3>
 

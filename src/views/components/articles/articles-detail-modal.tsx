@@ -1,3 +1,4 @@
+// @/views/components/articles/articles-detail-modal.tsx
 import { prisma } from "@/lib/prisma";
 import { X } from "lucide-react";
 import Link from "next/link";
@@ -6,8 +7,10 @@ import { ArticleContent } from "./articles-content";
 
 export default async function ArticleDetailModal({
   postId,
+  userId, // <-- AJOUT ICI
 }: {
   postId: string;
+  userId: string | null; // <-- AJOUT ICI
 }) {
   const article = await prisma.post.findUnique({
     where: { id: postId },
@@ -33,8 +36,8 @@ export default async function ArticleDetailModal({
           <X className="w-5 h-5" />
         </Link>
 
-        {/* Section Gauche (Article) */}
-        <ArticleContent article={article} />
+        {/* Section Gauche (Article) : On lui passe bien le userId */}
+        <ArticleContent article={article} userId={userId} />
 
         {/* Section Droite (Commentaires) */}
         <CommentSection comments={article.comments} postId={article.id} />

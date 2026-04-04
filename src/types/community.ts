@@ -3,6 +3,7 @@ export interface PrismaDiscussion {
   content: string;
   imageUrl: string | null;
   createdAt: Date;
+  archived: boolean;
   author: {
     id: string;
     nom: string | null;

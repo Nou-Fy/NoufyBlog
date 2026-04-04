@@ -10,7 +10,6 @@ export async function getArticles(filters: {
 }) {
   const { query, category, date, sort } = filters;
 
-  // On vérifie que la catégorie existe et n'est pas "ALL" avant de filtrer
   const sectionFilter =
     category && category !== "ALL" ? (category as PostSection) : undefined;
 
@@ -28,6 +27,7 @@ export async function getArticles(filters: {
 
   return await prisma.post.findMany({
     where: {
+      archived: false, // 1. On ne récupère que les articles non archivés
       AND: [
         query
           ? {
@@ -37,10 +37,18 @@ export async function getArticles(filters: {
               ],
             }
           : {},
-        // Si sectionFilter est undefined, Prisma ignore simplement cette condition
         sectionFilter ? { section: sectionFilter } : {},
         dateFilter,
       ],
+    },
+    // 2. TRÈS IMPORTANT : On inclut l'auteur pour éviter l'erreur "undefined (reading 'id')"
+    include: {
+      author: {
+        select: {
+          id: true,
+          nom: true,
+        },
+      },
     },
     orderBy: {
       createdAt: sort === "asc" ? "asc" : "desc",
