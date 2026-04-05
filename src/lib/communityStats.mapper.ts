@@ -1,4 +1,4 @@
-import { Users, MessageSquare, Lightbulb, Map, MapPinned } from "lucide-react";
+import { Users, MessageSquare, Lightbulb, MapPinned } from "lucide-react";
 
 export function mapCommunityStats(stats: {
   users: number;
@@ -11,25 +11,29 @@ export function mapCommunityStats(stats: {
       label: "Éleveurs",
       value: stats.users,
       icon: Users,
-      color: "bg-blue-50 text-blue-600",
+      bgColor: "bg-blue-100",
+      textColor: "text-blue-600",
     },
     {
       label: "Discussions",
       value: stats.discussions,
       icon: MessageSquare,
-      color: "bg-emerald-50 text-emerald-600",
+      bgColor: "bg-emerald-100",
+      textColor: "text-emerald-600",
     },
     {
       label: "Posts",
       value: stats.tips,
       icon: Lightbulb,
-      color: "bg-orange-50 text-orange-600",
+      bgColor: "bg-orange-100",
+      textColor: "text-orange-600",
     },
     {
       label: "Régions",
       value: stats.location,
       icon: MapPinned,
-      color: "bg-purple-50 text-purple-600",
+      bgColor: "bg-purple-100",
+      textColor: "text-purple-600",
     },
   ];
 }
