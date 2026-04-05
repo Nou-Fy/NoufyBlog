@@ -41,7 +41,7 @@ export default async function ArticleDetailModal({
         </Link>
 
         {/* SECTION GAUCHE : L'ARTICLE (Responsabilité déportée) */}
-        <ArticleContent article={article} />
+        <ArticleContent article={article} userId={article.author.id} />
 
         {/* SECTION DROITE : COMMENTAIRES (Responsabilité déportée) */}
         <CommentSection comments={article.comments} postId={article.id} />

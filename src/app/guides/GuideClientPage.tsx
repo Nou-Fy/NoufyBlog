@@ -4,6 +4,9 @@ import { Plus, Bird } from "lucide-react";
 import { GuideCard } from "@/views/components/guides/GuideCard";
 import GuideForm from "@/views/components/guides/GuideForm";
 import { useRouter } from "next/navigation";
+import EmptyState from "@/views/components/common/EmptyState";
+import Container from "@/views/components/common/Container";
+import Section from "@/views/components/common/Section";
 
 export default function GuideClientPage({
   isAdmin,
@@ -16,36 +19,42 @@ export default function GuideClientPage({
   const router = useRouter();
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
-      {/* HEADER (Pour ne pas avoir une page vide au début) */}
-      <header className="bg-amber-50 py-16 px-4 text-center border-b">
-        <h1 className="text-4xl font-extrabold text-slate-900">
-          Le Guide de l'Élevage
-        </h1>
-      </header>
-
-      <main className="max-w-6xl mx-auto px-4 py-16 w-full">
-        {initialGuides.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            {initialGuides.map((guide) => (
-              <GuideCard
-                key={guide.id || guide.title}
-                guide={guide}
-                isAdmin={isAdmin}
-              />
-            ))}
+    <>
+      {/* HEADER SECTION */}
+      <Section bg="amber-50" py="xl">
+        <Container size="2xl">
+          <div className="text-center">
+            <h1 className="text-4xl font-extrabold text-slate-900">
+              Le Guide de l'Élevage
+            </h1>
           </div>
-        ) : (
-          <div className="text-center py-20 border-2 border-dashed rounded-xl">
-            <Bird className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-            <p className="text-slate-500">
-              Aucun guide disponible pour le moment.
-            </p>
-          </div>
-        )}
-      </main>
+        </Container>
+      </Section>
 
-      {/* BOUTON ADMIN ET MODALE (Code précédent...) */}
+      {/* MAIN CONTENT */}
+      <Section py="xl">
+        <Container size="2xl">
+          {initialGuides.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+              {initialGuides.map((guide) => (
+                <GuideCard
+                  key={guide.id || guide.title}
+                  guide={guide}
+                  isAdmin={isAdmin}
+                />
+              ))}
+            </div>
+          ) : (
+            <EmptyState
+              icon={Bird}
+              title="Aucun guide disponible"
+              description="Aucun guide disponible pour le moment."
+            />
+          )}
+        </Container>
+      </Section>
+
+      {/* BOUTON ADMIN ET MODALE */}
       {isAdmin && (
         <button
           onClick={() => setIsModalOpen(true)}
@@ -71,6 +80,6 @@ export default function GuideClientPage({
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

@@ -2,6 +2,7 @@
 
 import useCommunityStats from "@/views/hooks/useCommunityStats";
 import StatCard from "./StatCard";
+import StatsCarousel from "./StatsCarousel";
 import CommunityStatsSkeleton from "./CommunityStatsSkeleton";
 import { mapCommunityStats } from "@/lib/communityStats.mapper";
 
@@ -18,11 +19,10 @@ export default function CommunityStats() {
   const items = mapCommunityStats(stats);
 
   return (
-    // Suppression du padding et du fond pour laisser l'overlap se faire proprement
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <StatsCarousel>
       {items.map((item, i) => (
         <StatCard key={i} {...item} />
       ))}
-    </div>
+    </StatsCarousel>
   );
 }

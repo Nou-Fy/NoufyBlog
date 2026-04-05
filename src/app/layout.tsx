@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "./context/AuthContext";
-import Header from "@/views/components/Header";
-import Footer from "@/views/components/Footer";
+import HeaderNew from "@/views/components/HeaderNew";
+import FooterNew from "@/views/components/FooterNew";
 import { cookies } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,11 +23,12 @@ export default async function RootLayout({
 
   return (
     <html lang="fr">
-      <body className={`${inter.className} bg-stone-50 text-slate-900`}>
+      <body
+        className={`${inter.className} bg-stone-50 text-slate-900 min-h-screen flex flex-col`}>
         <AuthProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer isLoggedInServer={hasSession} />
+          <HeaderNew />
+          <main className="flex-1">{children}</main>
+          <FooterNew isLoggedInServer={hasSession} />
         </AuthProvider>
       </body>
     </html>

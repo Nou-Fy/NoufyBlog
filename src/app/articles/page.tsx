@@ -6,7 +6,11 @@ import ArticleDetailModal from "@/views/components/articles/articles-detail-moda
 import NouveauPostPage from "./news/page";
 import { getArticles } from "@/lib/services/articles.service";
 import ArticlesFilters from "@/views/components/articles/articles-filter";
+import CollapsibleFilters from "@/views/components/articles/CollapsibleFilters";
 import { ArticleCard } from "@/views/components/articles/ArticleCard";
+import Container from "@/views/components/common/Container";
+import Section from "@/views/components/common/Section";
+import EmptyState from "@/views/components/common/EmptyState";
 // On importe la carte pour la grille, pas le contenu complet
 
 export default async function ArticlesPage({
@@ -29,10 +33,16 @@ export default async function ArticlesPage({
   const isFormVisible = params.show === "true";
   const activePostId = params.view;
 
+  // Vérifier s'il y a des filtres actifs
+  const hasFilters =
+    params.query || params.category || params.sort || params.date;
+
   return (
-    <div className="min-h-screen bg-stone-50">
-      <main className="container mx-auto py-12 px-4">
-        <ArticlesFilters />
+    <Section bg="stone-50" py="xl">
+      <Container size="2xl">
+        <CollapsibleFilters hasFilters={!!hasFilters}>
+          <ArticlesFilters />
+        </CollapsibleFilters>
 
         <div className="relative">
           {isFormVisible && (
@@ -71,31 +81,21 @@ export default async function ArticlesPage({
               ))}
             </div>
           ) : (
-            <EmptyState />
+            <EmptyState
+              icon={Inbox}
+              title="Aucun article trouvé"
+              description="Nous n'avons rien trouvé pour ces critères de recherche."
+              action={
+                <Link
+                  href="/articles"
+                  className="mt-8 px-6 py-2 bg-slate-900 text-white rounded-full text-sm font-bold hover:bg-emerald-600 transition-colors">
+                  Réinitialiser les filtres
+                </Link>
+              }
+            />
           )}
         </div>
-      </main>
-    </div>
-  );
-}
-
-function EmptyState() {
-  return (
-    <div className="flex flex-col items-center justify-center py-24 bg-white rounded-[3rem] border-2 border-dashed border-stone-200">
-      <div className="w-20 h-20 bg-stone-50 rounded-full flex items-center justify-center mb-6 text-stone-300">
-        <Inbox size={40} />
-      </div>
-      <h3 className="text-2xl font-bold text-slate-900">
-        Aucun article trouvé
-      </h3>
-      <p className="text-slate-500 mt-2 max-w-xs text-center">
-        Nous n'avons rien trouvé pour ces critères de recherche.
-      </p>
-      <Link
-        href="/articles"
-        className="mt-8 px-6 py-2 bg-slate-900 text-white rounded-full text-sm font-bold hover:bg-emerald-600 transition-colors">
-        Réinitialiser les filtres
-      </Link>
-    </div>
+      </Container>
+    </Section>
   );
 }

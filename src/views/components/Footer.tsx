@@ -9,7 +9,7 @@ interface FooterProps {
   isLoggedInServer: boolean;
 }
 
-export default function Footer({ isLoggedInServer }: FooterProps) {
+export default function FooterView({ isLoggedInServer }: FooterProps) {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   return (
