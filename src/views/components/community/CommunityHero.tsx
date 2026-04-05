@@ -50,7 +50,7 @@ export default function CommunityHero({ userId }: CommunityHeroProps) {
   };
 
   return (
-    <section className="bg-emerald-700 py-16 px-4 text-white">
+    <section className="bg-emerald-700 pt-16 pb-32 px-4 text-white">
       <div className="container mx-auto text-center max-w-3xl">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
           L'Espace des Éleveurs Passionnés 🇲🇬

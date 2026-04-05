@@ -28,7 +28,11 @@ export default async function CommunautePage({
   return (
     <div className="flex flex-col min-h-screen bg-stone-50">
       <CommunityHero userId={userId} />
-      <CommunityStats />
+
+      {/* Ce conteneur fait remonter les stats sur le Hero */}
+      <div className="relative z-10 -mt-20 container mx-auto px-4">
+        <CommunityStats />
+      </div>
 
       <main className="container mx-auto py-16 px-4">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">

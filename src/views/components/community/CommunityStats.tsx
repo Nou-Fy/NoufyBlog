@@ -18,14 +18,11 @@ export default function CommunityStats() {
   const items = mapCommunityStats(stats);
 
   return (
-    <section className="py-12 bg-stone-50/50">
-      <div className="container mx-auto px-0">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {items.map((item, i) => (
-            <StatCard key={i} {...item} />
-          ))}
-        </div>
-      </div>
-    </section>
+    // Suppression du padding et du fond pour laisser l'overlap se faire proprement
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      {items.map((item, i) => (
+        <StatCard key={i} {...item} />
+      ))}
+    </div>
   );
 }
