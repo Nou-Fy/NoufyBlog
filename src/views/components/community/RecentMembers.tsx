@@ -19,7 +19,7 @@ export default async function RecentMembers() {
   if (!success || members.length === 0) return null;
 
   return (
-    <Card className="border-stone-200 shadow-sm">
+    <Card className="w-full border-stone-200 shadow-sm">
       <CardHeader>
         <CardTitle className="text-lg font-semibold text-emerald-900 capitalize">
           Nouveaux de {currentMonth} ✨

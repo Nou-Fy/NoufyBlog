@@ -7,6 +7,8 @@ import Pagination from "@/views/components/ui/pagination";
 import TopMembres from "@/views/components/community/TopMembres"; // à adapter
 import RecentMembres from "@/views/components/community/RecentMembers"; // à adapter
 import CollapsibleSidebar from "@/views/components/community/CollapsibleSidebar";
+import Container from "@/views/components/common/Container";
+import Section from "@/views/components/common/Section";
 import { getPaginatedDiscussions } from "../api/actions/discussion.actions";
 import { Trophy, Sparkles } from "lucide-react";
 
@@ -28,18 +30,18 @@ export default async function CommunautePage({
   );
 
   return (
-    <div className="flex flex-col min-h-screen bg-stone-50">
+    <div className="flex min-h-screen w-full flex-col overflow-x-hidden bg-stone-50">
       <CommunityHero userId={userId} />
 
       {/* Ce conteneur fait remonter les stats sur le Hero */}
-      <div className="relative z-10 -mt-20">
-        <div className="container mx-auto px-4">
+      <div className="relative z-10 -mt-10">
+        <Container size="2xl" className="!px-4 sm:!px-6 lg:!px-8">
           <CommunityStats />
-        </div>
+        </Container>
       </div>
 
-      <div className="py-16 px-4">
-        <div className="container mx-auto">
+      <Section bg="stone-50" py="xl" className="pt-0">
+        <Container size="2xl">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Colonne gauche : discussions */}
             <div className="lg:col-span-2">
@@ -78,8 +80,8 @@ export default async function CommunautePage({
               </CollapsibleSidebar>
             </div>
           </div>
-        </div>
-      </div>
+        </Container>
+      </Section>
     </div>
   );
 }

@@ -54,7 +54,7 @@ export default function DiscussionItem({
     <>
       <div
         onClick={handleOpen}
-        className={`p-5 bg-white rounded-xl border border-slate-100 shadow-sm transition-all ${
+        className={`p-5 w-full min-w-0 bg-white rounded-xl border border-slate-100 shadow-sm transition-all ${
           isAuthenticated
             ? "hover:border-emerald-200 hover:shadow-md cursor-pointer group"
             : "opacity-75 cursor-not-allowed"

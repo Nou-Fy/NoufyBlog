@@ -23,7 +23,7 @@ export default function CollapsibleSidebar({
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="lg:hidden">
+    <div className="lg:hidden w-full overflow-hidden">
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <CollapsibleTrigger className="flex items-center gap-2">
           {icon && <span>{icon}</span>}

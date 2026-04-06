@@ -14,7 +14,7 @@ export default function RecentDiscussions({
   userId,
 }: RecentDiscussionsProps) {
   return (
-    <div className="grid gap-4">
+    <div className="grid gap-4 w-full">
       {discussions.map((discussion) => (
         <DiscussionItem
           key={discussion.id}

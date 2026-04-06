@@ -70,7 +70,7 @@ export default function DiscussionDrawer({
   if (!mounted || !isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[100] flex justify-end">
+    <div className="fixed inset-0 z-[100] flex justify-end overflow-x-hidden">
       {/* Overlay */}
       <div
         className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"

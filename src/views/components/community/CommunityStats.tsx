@@ -19,10 +19,12 @@ export default function CommunityStats() {
   const items = mapCommunityStats(stats);
 
   return (
-    <StatsCarousel>
-      {items.map((item, i) => (
-        <StatCard key={i} {...item} />
-      ))}
-    </StatsCarousel>
+    <div className="mx-4 sm:mx-6 lg:mx-8">
+      <StatsCarousel>
+        {items.map((item, i) => (
+          <StatCard key={i} {...item} />
+        ))}
+      </StatsCarousel>
+    </div>
   );
 }

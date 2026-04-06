@@ -17,8 +17,8 @@ export default function StatCard({
   textColor,
 }: StatCardProps) {
   return (
-    <Card className="border-none shadow-sm hover:shadow-md transition-shadow duration-300 bg-white rounded-2xl overflow-hidden">
-      <CardContent className="p-4 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+    <Card className="border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300 bg-white rounded-2xl overflow-hidden">
+      <CardContent className="pl-4 sm:pl-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
         {/* L'icône utilise le bgColor et le textColor pour rester assortie */}
         <div
           className={`p-3 sm:p-4 rounded-xl ${bgColor} ${textColor} flex-shrink-0`}>

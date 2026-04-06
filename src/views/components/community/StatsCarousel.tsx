@@ -20,7 +20,7 @@ export default function StatsCarousel({ children }: StatsCarouselProps) {
   };
 
   return (
-    <div>
+    <div className="overflow-hidden w-full">
       {/* Desktop: Grid */}
       <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6">
         {children}
@@ -44,7 +44,7 @@ export default function StatsCarousel({ children }: StatsCarouselProps) {
                 transform: `translateX(-${currentIndex * 100}%)`,
               }}>
               {children.map((child, idx) => (
-                <div key={idx} className="min-w-full">
+                <div key={idx} className="min-w-full flex-shrink-0">
                   {child}
                 </div>
               ))}
