@@ -16,7 +16,7 @@ import {
 import { GuideModal } from "./GuideModal";
 import GuideForm from "./GuideForm";
 import { deleteGuide } from "@/lib/services/guide.service";
-import { useGuideModal } from "@/lib/hooks/use-guide-modal";
+import { useGuideModal } from "@/hooks/use-guide-modal";
 
 interface GuideCardProps {
   guide: any;
@@ -69,7 +69,7 @@ export function GuideCard({ guide, isAdmin, onRefresh }: GuideCardProps) {
           </CardTitle>
         </CardHeader>
 
-        <CardContent className="p-6 pt-2 flex flex-col flex-1 space-y-6">
+        <CardContent className="p-6 pt-2 flex flex-col flex-1 space-y-4">
           <p className="text-slate-700 text-base leading-relaxed line-clamp-4 flex-1">
             {guide.description}
           </p>

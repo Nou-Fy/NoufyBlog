@@ -17,8 +17,8 @@ export default function FooterNew({ isLoggedInServer }: FooterProps) {
     <footer className="w-full bg-slate-900 text-slate-300 border-t border-slate-800">
       {/* CTA SECTION */}
       <section className="bg-gradient-to-r from-emerald-700 to-emerald-600 text-white">
-        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12 md:py-16">
-          <div className="text-center space-y-6">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-full py-12 md:py-16">
+          <div className="text-center space-y-4">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
               Prêt à progresser dans votre élevage ?
             </h2>
@@ -45,7 +45,7 @@ export default function FooterNew({ isLoggedInServer }: FooterProps) {
       </section>
 
       {/* FOOTER CONTENT */}
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12 md:py-16">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-full py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
           {/* BRAND */}
           <div className="space-y-4">

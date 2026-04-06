@@ -90,7 +90,7 @@ export default function DiscussionDrawer({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 bg-slate-50/50 space-y-6">
+        <div className="flex-1 overflow-y-auto p-6 bg-slate-50/50 space-y-4">
           <DiscussionHeader discussion={discussion} />
 
           <div className="space-y-4">

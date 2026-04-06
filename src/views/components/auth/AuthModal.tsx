@@ -7,7 +7,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { loginUser } from "@/app/api/actions/login";
 import { registerUser } from "@/app/api/actions/register";
-import { useAuth } from "@/app/context/AuthContext";
+import { useAuth } from "@/context/AuthContext";
+import { DESIGN_SYSTEM } from "@/lib/constants/design-system";
 
 // 1. Définition du schéma de base directement ici pour garantir la cohérence
 const authSchema = z
@@ -81,8 +82,8 @@ export default function AuthModal({
 
         const result = await loginUser(formData);
 
-        if (result.success) {
-          login();
+        if (result.success && result.user) {
+          login(result.user);
           onClose();
         } else {
           setErrorMessage(result.error ?? "Une erreur est survenue");
@@ -97,11 +98,11 @@ export default function AuthModal({
 
         const result = await registerUser(null, formData);
 
-        if (result.error) {
+        if (result?.error) {
           setErrorMessage(result.error);
-        } else {
+        } else if (result?.user) {
           // Registration successful, user is auto-logged in
-          login();
+          login(result.user);
           onClose();
         }
       }
@@ -119,7 +120,8 @@ export default function AuthModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-      <div className="relative w-full max-w-md bg-white rounded-[2.5rem] shadow-2xl p-8 md:p-10 animate-in fade-in zoom-in duration-300">
+      <div
+        className={`relative w-full max-w-md ${DESIGN_SYSTEM.colors.neutral.bg} ${DESIGN_SYSTEM.radius.xl} shadow-2xl p-8 md:p-10 animate-in fade-in zoom-in duration-300`}>
         <button
           onClick={onClose}
           className="absolute top-6 right-6 p-2 hover:bg-stone-100 rounded-full transition-colors">

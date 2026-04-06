@@ -52,7 +52,7 @@ export default function CommunityHero({ userId }: CommunityHeroProps) {
 
   return (
     <section className="bg-emerald-700 overflow-hidden text-white">
-      <Container size="2xl" className="py-16 overflow-hidden">
+      <Container size="full" className="py-16 overflow-hidden">
         <div className="mx-auto max-w-3xl w-full text-center overflow-hidden">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
             L'Espace des Éleveurs Passionnés 🇲🇬
@@ -81,7 +81,7 @@ export default function CommunityHero({ userId }: CommunityHeroProps) {
                   </DialogHeader>
                   <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-5 pt-4">
+                    className="space-y-4 pt-4">
                     {/* Message / Contenu */}
                     <div className="space-y-1.5">
                       <label className="text-sm font-semibold text-slate-700">

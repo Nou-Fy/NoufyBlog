@@ -19,10 +19,10 @@ export default function GuideClientPage({
   const router = useRouter();
 
   return (
-    <>
+    <div className="min-h-screen w-full bg-stone-50">
       {/* HEADER SECTION */}
-      <Section bg="amber-50" py="xl">
-        <Container size="2xl">
+      <Section bg="amber-50" py="lg">
+        <Container size="full">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold text-slate-900">
               Le Guide de l'Élevage
@@ -32,8 +32,8 @@ export default function GuideClientPage({
       </Section>
 
       {/* MAIN CONTENT */}
-      <Section py="xl">
-        <Container size="2xl">
+      <Section py="lg">
+        <Container size="full">
           {initialGuides.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
               {initialGuides.map((guide) => (
@@ -80,6 +80,6 @@ export default function GuideClientPage({
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

@@ -1,8 +1,8 @@
 export default function Loading() {
   return (
-    <div className="container mx-auto px-4 py-12 space-y-12 animate-pulse">
+    <div className="container mx-auto px-4 py-12 space-y-4 animate-pulse">
       <div className="grid md:grid-cols-2 gap-8 items-center">
-        <div className="space-y-6">
+        <div className="space-y-4">
           <div className="h-4 w-32 bg-orange-100 rounded-full" />
           <div className="h-12 w-full bg-slate-200 rounded-lg" />
           <div className="h-6 w-3/4 bg-slate-100 rounded-md" />

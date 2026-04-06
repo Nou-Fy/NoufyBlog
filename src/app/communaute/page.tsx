@@ -2,9 +2,9 @@ import { getSessionUser } from "@/lib/auth";
 import CommunityHero from "@/views/components/community/CommunityHero";
 import CommunityStats from "@/views/components/community/CommunityStats";
 import DiscussionFilters from "@/views/components/community/DiscussionFilters";
-import RecentDiscussions from "@/views/components/community/RecentDiscutssion";
+import RecentDiscussions from "@/views/components/community/RecentDiscussions";
 import Pagination from "@/views/components/ui/pagination";
-import TopMembres from "@/views/components/community/TopMembres"; // à adapter
+import TopMembers from "@/views/components/community/TopMembers"; // à adapter
 import RecentMembres from "@/views/components/community/RecentMembers"; // à adapter
 import CollapsibleSidebar from "@/views/components/community/CollapsibleSidebar";
 import Container from "@/views/components/common/Container";
@@ -35,13 +35,13 @@ export default async function CommunautePage({
 
       {/* Ce conteneur fait remonter les stats sur le Hero */}
       <div className="relative z-10 -mt-10">
-        <Container size="2xl" className="!px-4 sm:!px-6 lg:!px-8">
+        <Container size="full" className="!px-4 sm:!px-6 lg:!px-8">
           <CommunityStats />
         </Container>
       </div>
 
-      <Section bg="stone-50" py="xl" className="pt-0">
-        <Container size="2xl">
+      <Section bg="stone-50" py="lg" className="pt-0">
+        <Container size="full">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Colonne gauche : discussions */}
             <div className="lg:col-span-2">
@@ -59,9 +59,9 @@ export default async function CommunautePage({
               </div>
             </div>
 
-            {/* Colonne droite : TopMembres + RecentMembres (Desktop) */}
-            <div className="hidden lg:flex lg:col-span-1 lg:flex-col lg:space-y-8">
-              <TopMembres />
+            {/* Colonne droite : TopMembers + RecentMembres (Desktop) */}
+            <div className="hidden lg:flex lg:col-span-1 lg:flex-col lg:space-y-4">
+              <TopMembers />
               <RecentMembres />
             </div>
 
@@ -70,7 +70,7 @@ export default async function CommunautePage({
               <CollapsibleSidebar
                 title="Membres du mois 🏆"
                 icon={<Trophy className="w-5 h-5 text-amber-600" />}>
-                <TopMembres />
+                <TopMembers />
               </CollapsibleSidebar>
 
               <CollapsibleSidebar

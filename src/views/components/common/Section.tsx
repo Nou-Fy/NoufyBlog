@@ -22,7 +22,7 @@ export default function Section({
   children,
   className,
   bg = "white",
-  py = "lg",
+  py = "md",
   px = "md",
   id,
 }: SectionProps) {
@@ -36,10 +36,10 @@ export default function Section({
   };
 
   const pyClasses = {
-    sm: "py-8 md:py-12",
-    md: "py-12 md:py-16",
-    lg: "py-16 md:py-20",
-    xl: "py-20 md:py-24",
+    sm: "py-4 md:py-6",
+    md: "py-6 md:py-8",
+    lg: "py-8 md:py-10",
+    xl: "py-10 md:py-12",
   };
 
   const pxClasses = {

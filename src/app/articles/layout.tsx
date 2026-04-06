@@ -8,7 +8,7 @@ export default function ArticlesLayout({
 }) {
   return (
     <div className="min-h-screen overflow-x-hidden bg-stone-50">
-      <Container size="2xl" className="py-8">
+      <Container size="full" className="py-8">
         {/* Conteneur Principal : Aligne le bloc texte à gauche et le bouton à droite */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
           {/* Bloc de Gauche : Empile les deux textes verticalement */}

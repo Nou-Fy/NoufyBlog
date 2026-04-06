@@ -61,7 +61,7 @@ export function ArticleContent({ article, userId }: ArticleContentProps) {
         )}
       </div>
 
-      <div className="max-w-3xl mx-auto space-y-6">
+      <div className="max-w-3xl mx-auto space-y-4">
         <span className="bg-emerald-100 text-emerald-700 text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-widest">
           {article.section}
         </span>

@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BookOpenText, Sprout, ShieldCheck, Users, ArrowRight } from "lucide-react";
+import {
+  BookOpenText,
+  Sprout,
+  ShieldCheck,
+  Users,
+  ArrowRight,
+} from "lucide-react";
 import { Button } from "@/views/components/ui/button";
 import {
   Card,
@@ -13,24 +19,26 @@ import Section from "@/views/components/common/Section";
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full min-h-screen bg-stone-50">
       {/* HERO SECTION */}
-      <Section bg="amber-50" py="xl">
-        <Container size="2xl">
+      <Section bg="stone-50" py="lg">
+        <Container size="full">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             {/* Text Content */}
-            <div className="space-y-8 order-2 md:order-1">
+            <div className="space-y-4 order-2 md:order-1">
               <div className="space-y-4">
                 <span className="inline-block px-4 py-2 rounded-full bg-orange-100 text-orange-600 text-xs font-bold uppercase tracking-wider">
                   ✨ Mpiompy Akoho Malagasy
                 </span>
                 <h1 className="text-5xl md:text-6xl font-black tracking-tight text-slate-900 leading-tight">
-                  Réussissez votre <span className="text-emerald-600">élevage</span> de poules
+                  Réussissez votre{" "}
+                  <span className="text-emerald-600">élevage</span> de poules
                 </h1>
               </div>
 
               <p className="text-lg text-slate-700 leading-relaxed max-w-xl">
-                Bienvenue sur <span className="font-bold text-orange-600">Noufy Blog</span>,
+                Bienvenue sur{" "}
+                <span className="font-bold text-orange-600">Noufy Blog</span>,
                 la première ressource éducative dédiée aux éleveurs malgaches.
                 Conseils pratiques, guides complets et communauté engagée.
               </p>
@@ -70,9 +78,9 @@ export default function HomePage() {
       </Section>
 
       {/* FEATURES SECTION */}
-      <Section bg="white" py="xl">
-        <Container size="2xl">
-          <div className="space-y-16">
+      <Section bg="white" py="lg">
+        <Container size="full">
+          <div className="space-y-4">
             {/* Header */}
             <div className="text-center space-y-4 max-w-2xl mx-auto">
               <span className="inline-block text-orange-600 text-sm font-bold uppercase tracking-widest">
@@ -82,8 +90,9 @@ export default function HomePage() {
                 Un guide complet pour chaque étape
               </h2>
               <p className="text-lg text-slate-600 leading-relaxed">
-                Que vous débutiez avec quelques poules ou gériez une ferme professionnelle,
-                nous vous accompagnons avec des contenus adaptés à Madagascar.
+                Que vous débutiez avec quelques poules ou gériez une ferme
+                professionnelle, nous vous accompagnons avec des contenus
+                adaptés à Madagascar.
               </p>
             </div>
 
@@ -151,9 +160,9 @@ export default function HomePage() {
       </Section>
 
       {/* DETAILS SECTION */}
-      <Section bg="stone-50" py="xl">
-        <Container size="2xl">
-          <div className="space-y-24">
+      <Section bg="stone-50" py="lg">
+        <Container size="full">
+          <div className="space-y-4">
             {/* Detail 1 */}
             <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
               <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg group">
@@ -164,15 +173,16 @@ export default function HomePage() {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <h3 className="text-3xl md:text-4xl font-black text-slate-900">
-                  Optimisez l'<span className="text-orange-600">alimentation</span>
+                  Optimisez l'
+                  <span className="text-orange-600">alimentation</span>
                 </h3>
                 <p className="text-lg text-slate-700 leading-relaxed">
-                  L'alimentation représente le plus gros coût de l'élevage.
-                  Nos articles détaillés vous aident à formule des rations
-                  équilibrées à base de produits locaux, maximisant la croissance
-                  sans excès de coûts.
+                  L'alimentation représente le plus gros coût de l'élevage. Nos
+                  articles détaillés vous aident à formule des rations
+                  équilibrées à base de produits locaux, maximisant la
+                  croissance sans excès de coûts.
                 </p>
                 <Link
                   href="/articles"
@@ -185,14 +195,15 @@ export default function HomePage() {
 
             {/* Detail 2 */}
             <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-              <div className="space-y-6 order-2 md:order-1">
+              <div className="space-y-4 order-2 md:order-1">
                 <h3 className="text-3xl md:text-4xl font-black text-slate-900">
-                  Protégez votre cheptel contre les <span className="text-red-600">maladies</span>
+                  Protégez votre cheptel contre les{" "}
+                  <span className="text-red-600">maladies</span>
                 </h3>
                 <p className="text-lg text-slate-700 leading-relaxed">
                   Les épidémies peuvent décimer un élevage en quelques jours.
-                  Nos guides vous apprennent à reconnaître les symptômes tôt
-                  et à appliquer une prophylaxie efficace adaptée à votre région.
+                  Nos guides vous apprennent à reconnaître les symptômes tôt et
+                  à appliquer une prophylaxie efficace adaptée à votre région.
                 </p>
                 <Link
                   href="/guides"

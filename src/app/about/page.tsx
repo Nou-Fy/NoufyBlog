@@ -7,11 +7,11 @@ import Section from "@/views/components/common/Section";
 
 export default function AboutPage() {
   return (
-    <>
-      <Section bg="white" py="xl">
-        <Container size="2xl">
+    <div className="min-h-screen w-full bg-stone-50">
+      <Section bg="white" py="lg">
+        <Container size="full">
           <div className="bg-white border-b border-stone-200 pt-20 pb-32 shadow-sm text-center">
-            <div className="max-w-3xl mx-auto space-y-6">
+            <div className="max-w-3xl mx-auto space-y-4">
               <span className="inline-block px-4 py-1.5 rounded-full bg-orange-50 text-orange-700 text-[10px] font-black uppercase tracking-[0.2em]">
                 Notre Histoire
               </span>
@@ -21,16 +21,16 @@ export default function AboutPage() {
               </h1>
               <p className="text-slate-500 text-lg leading-relaxed">
                 NoufyBlog est bien plus qu'une simple blog. C'est un espace de
-                partage dédié à la modernisation de l'aviculture malagasy et à la
-                préservation de races d'exception ici à Madagascar.
+                partage dédié à la modernisation de l'aviculture malagasy et à
+                la préservation de races d'exception ici à Madagascar.
               </p>
             </div>
           </div>
         </Container>
       </Section>
 
-      <Section bg="stone-50" py="xl">
-        <Container size="2xl">
+      <Section bg="stone-50" py="lg">
+        <Container size="full">
           <div className="-mt-16 pb-20">
             {/* --- VALEURS (GRILLE) --- */}
             <div className="grid md:grid-cols-3 gap-8 mb-20">
@@ -86,30 +86,30 @@ export default function AboutPage() {
                   </p>
                 </div>
               </div>
-              <div className="space-y-8">
+              <div className="space-y-4">
                 <h2 className="text-3xl font-black text-slate-900">
                   Pourquoi avoir créé ce blog ?
                 </h2>
-                <div className="space-y-6 text-slate-600 leading-relaxed">
+                <div className="space-y-4 text-slate-600 leading-relaxed">
                   <p>
                     L'aviculture à Madagascar possède un potentiel immense.
-                    Cependant, l'accès à des informations techniques fiables reste
-                    souvent difficile pour les éleveurs locaux.
+                    Cependant, l'accès à des informations techniques fiables
+                    reste souvent difficile pour les éleveurs locaux.
                   </p>
                   <div className="flex gap-4">
                     <div className="flex-shrink-0 mt-1">
                       <ShieldCheck className="text-emerald-500 w-6 h-6" />
                     </div>
                     <p className="text-sm italic">
-                      &quot;Notre objectif est de fournir des guides pratiques sur
-                      l'hygiène, la reproduction et la gestion de ferme, adaptés à
-                      notre contexte malgache.&quot;
+                      &quot;Notre objectif est de fournir des guides pratiques
+                      sur l'hygiène, la reproduction et la gestion de ferme,
+                      adaptés à notre contexte malgache.&quot;
                     </p>
                   </div>
                   <p>
-                    Que vous soyez ici pour admirer nos Wyandottes ou pour apprendre
-                    à protéger votre basse-cour contre la maladie de Newcastle, vous
-                    êtes au bon endroit.
+                    Que vous soyez ici pour admirer nos Wyandottes ou pour
+                    apprendre à protéger votre basse-cour contre la maladie de
+                    Newcastle, vous êtes au bon endroit.
                   </p>
                 </div>
 
@@ -140,6 +140,6 @@ export default function AboutPage() {
           </div>
         </Container>
       </Section>
-    </>
+    </div>
   );
 }

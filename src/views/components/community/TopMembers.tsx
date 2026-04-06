@@ -14,7 +14,7 @@ export default async function TopMembers() {
   if (!success || members.length === 0) return null;
 
   return (
-    <Card className="w-full bg-amber-50 border-none shadow-none">
+    <Card className="w-full bg-emerald-50 border-none shadow-none">
       <CardHeader>
         <CardTitle className="text-xl">Membres du mois 🏆</CardTitle>
       </CardHeader>

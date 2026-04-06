@@ -13,7 +13,7 @@ interface ContainerProps {
 export default function Container({
   children,
   className,
-  size = "lg",
+  size = "full",
   padding = true,
 }: ContainerProps) {
   const sizeClasses = {
@@ -23,7 +23,7 @@ export default function Container({
     lg: "max-w-4xl",
     xl: "max-w-5xl",
     "2xl": "max-w-7xl",
-    full: "w-full",
+    full: "max-w-full",
   };
 
   return (

@@ -1,59 +1,78 @@
 "use client";
 
-import { User } from "lucide-react";
+import { User, LayoutDashboard, LogOut, UserCircle } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/app/context/AuthContext";
+import { useAuth } from "@/context/AuthContext";
+import { useLogout } from "@/hooks/useLogout";
 
 export function UserDropdown() {
   const router = useRouter();
-  const { logout } = useAuth();
+  const { user, isLoggedIn, isLoading: authLoading } = useAuth();
+  const { handleLogout, isLoading: logoutLoading } = useLogout();
 
-  const rooute = useRouter();
+  if (authLoading) {
+    return (
+      <div className="w-8 h-8 rounded-full bg-emerald-800 animate-pulse border border-emerald-700" />
+    );
+  }
 
-  const handlelogout = async () => {
-    await fetch("/api/logout", { method: "POST" });
-    logout();
-    router.push("/");
-  };
+  // Si pas de session ou pas d'objet user, on ne rend rien
+  if (!isLoggedIn || !user) return null;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="outline"
-          className="flex gap-2 text-slate-900 font-bold">
-          <User size={16} />
-          Mon compte
+          variant="ghost"
+          className="flex items-center gap-2 text-white hover:bg-emerald-800 hover:text-orange-400 font-semibold focus-visible:ring-0">
+          <UserCircle size={22} className="text-orange-400" />
+          <span className="hidden lg:inline">{user.prenom}</span>
         </Button>
       </DropdownMenuTrigger>
 
-      {/* On s'assure que le contenu a un fond blanc et du texte sombre */}
       <DropdownMenuContent
         align="end"
-        className="bg-white text-slate-900 border-emerald-100">
+        className="w-56 bg-white p-2 shadow-xl border-stone-200 mt-2">
+        <DropdownMenuLabel className="font-normal">
+          <div className="flex flex-col space-y-1">
+            <p className="text-sm font-bold text-slate-900">
+              {user.prenom} {user.nom}
+            </p>
+            <p className="text-xs text-slate-500">{user.email}</p>
+          </div>
+        </DropdownMenuLabel>
+
+        <DropdownMenuSeparator />
+
         <DropdownMenuItem
-          className="cursor-pointer focus:bg-emerald-500 focus:text-white focus:font-bold"
-          onSelect={() => router.push("/profil")}>
-          Profil
-        </DropdownMenuItem>
-        <DropdownMenuItem className="cursor-pointer focus:bg-emerald-500 focus:text-white focus:font-bold">
-          Dashboard
-        </DropdownMenuItem>
-        <DropdownMenuItem className="cursor-pointer focus:bg-emerald-500 focus:text-white focus:font-bold">
-          Paramètres
+          onSelect={() => router.push("/profil")}
+          className="cursor-pointer gap-2 focus:bg-emerald-50">
+          <User size={16} /> Profil
         </DropdownMenuItem>
 
         <DropdownMenuItem
-          onClick={handlelogout}
-          className="cursor-pointer text-red-500 focus:bg-red-50 focus:text-red-700 font-bold">
-          Déconnexion
+          onSelect={() => router.push("/dashboard")}
+          className="cursor-pointer gap-2 focus:bg-emerald-50">
+          <LayoutDashboard size={16} /> Dashboard
+        </DropdownMenuItem>
+
+        <DropdownMenuSeparator />
+
+        <DropdownMenuItem
+          onClick={handleLogout}
+          disabled={logoutLoading}
+          className="cursor-pointer text-red-600 font-bold gap-2 focus:bg-red-50">
+          <LogOut size={16} />
+          {logoutLoading ? "Déconnexion..." : "Déconnexion"}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

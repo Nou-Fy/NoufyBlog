@@ -1,32 +1,51 @@
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { hashPassword, comparePassword } from "@/lib/password";
+import { SignJWT, jwtVerify } from "jose";
 import "server-only"; // ← Assure que ce fichier est traité comme un module serveur
+
+const JWT_SECRET = new TextEncoder().encode(
+  process.env.JWT_SECRET || "fallback-secret-change-in-production",
+);
 
 export async function getSessionUser() {
   const cookieStore = await cookies();
-  const userId = cookieStore.get("session")?.value;
+  const token = cookieStore.get("session")?.value;
 
-  // Si le cookie n'existe pas, userId sera undefined, on renvoie null
-  if (!userId) return null;
+  if (!token) return null;
 
-  // Puisqu'on n'utilise pas JWT, la valeur du cookie EST l'ID de l'utilisateur
-  return userId;
+  try {
+    const { payload } = await jwtVerify(token, JWT_SECRET);
+    return payload.userId as string;
+  } catch (error) {
+    // Token invalide ou expiré
+    return null;
+  }
 }
 
 export async function getIsAdmin() {
   const cookieStore = await cookies();
-  const userId = cookieStore.get("session")?.value;
+  const token = cookieStore.get("session")?.value;
 
-  // Si pas de cookie, on s'arrête là
-  if (!userId) return false;
+  if (!token) return false;
 
-  const user = await prisma.user.findUnique({
-    where: { id: userId },
-    select: { role: true },
-  });
+  try {
+    const { payload } = await jwtVerify(token, JWT_SECRET);
+    return payload.role === "ADMIN";
+  } catch (error) {
+    return false;
+  }
+}
 
-  return user?.role === "ADMIN";
+export async function createSessionToken(user: { id: string; role: string }) {
+  return await new SignJWT({
+    userId: user.id,
+    role: user.role,
+  })
+    .setProtectedHeader({ alg: "HS256" })
+    .setExpirationTime("7d")
+    .setIssuedAt()
+    .sign(JWT_SECRET);
 }
 
 export async function loginUserService(data: {

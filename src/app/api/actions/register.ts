@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { hashPassword } from "@/lib/password";
+import { createSessionToken } from "@/lib/auth";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { cookies } from "next/headers";
 
@@ -38,15 +39,32 @@ export async function registerUser(
     });
 
     // 🔥 AUTO LOGIN après inscription
+    const sessionToken = await createSessionToken({
+      id: user.id,
+      role: user.role,
+    });
+
     const cookieStore = await cookies();
 
-    cookieStore.set("session", user.id, {
+    cookieStore.set("session", sessionToken, {
       httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 60 * 60 * 24 * 7,
       path: "/",
       sameSite: "lax",
     });
 
-    redirect("/articles");
+    // Retourner l'utilisateur pour que le contexte se mette à jour
+    return {
+      user: {
+        id: user.id,
+        nom: user.nom,
+        prenom: user.prenom,
+        email: user.email,
+        role: user.role,
+        avatar: user.avatar,
+      },
+    };
   } catch (error) {
     if (isRedirectError(error)) {
       throw error;
