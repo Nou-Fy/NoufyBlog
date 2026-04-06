@@ -12,3 +12,10 @@ export const loginSchema = userSchema.pick({
   email: true,
   password: true,
 });
+
+const profileSchema = z.object({
+  nom: z.string().min(2, "Le nom est trop court"),
+  prenom: z.string().min(2, "Le prénom est trop court"),
+  email: z.string().email("Email invalide"),
+  region: z.string().optional(),
+});
