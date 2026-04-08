@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm } from "@/views/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PlusCircle, Loader2 } from "lucide-react";
 
@@ -73,9 +73,9 @@ export default function CommunityHero({ userId }: CommunityHeroProps) {
                   </Button>
                 </DialogTrigger>
 
-                <DialogContent className="sm:max-w-[500px] border-none bg-white text-slate-900">
+                <DialogContent className="sm:max-w-[500px] border-none bg-card text-card-foreground">
                   <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold text-emerald-800">
+                    <DialogTitle className="text-2xl font-bold text-foreground">
                       Nouvelle Discussion
                     </DialogTitle>
                   </DialogHeader>
@@ -84,13 +84,13 @@ export default function CommunityHero({ userId }: CommunityHeroProps) {
                     className="space-y-4 pt-4">
                     {/* Message / Contenu */}
                     <div className="space-y-1.5">
-                      <label className="text-sm font-semibold text-slate-700">
+                      <label className="text-sm font-semibold text-muted-foreground">
                         Votre message (max 500 car.) *
                       </label>
                       <textarea
                         {...form.register("content")}
                         placeholder="Partagez un conseil ou posez une question sur votre élevage..."
-                        className="w-full p-3 border border-stone-200 rounded-xl outline-none transition-all focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-sm min-h-[140px] bg-white text-slate-700"
+                        className="w-full p-3 border border-border rounded-xl outline-none transition-all focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 text-sm min-h-[140px] bg-card/80 text-foreground"
                       />
                       {form.formState.errors.content && (
                         <p className="text-red-500 text-[10px] font-medium">
@@ -101,14 +101,14 @@ export default function CommunityHero({ userId }: CommunityHeroProps) {
 
                     {/* Image URL avec le style h-10 uniforme */}
                     <div className="space-y-1.5">
-                      <label className="text-sm font-semibold text-slate-700">
+                      <label className="text-sm font-semibold text-muted-foreground">
                         Lien d'une image (optionnel)
                       </label>
                       <div className="relative flex items-center">
                         <input
                           {...form.register("imageUrl")}
                           placeholder="https://votre-image.jpg"
-                          className="w-full h-10 px-3 border border-stone-200 rounded-xl outline-none transition-all focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-slate-700 text-sm bg-white"
+                          className="w-full h-10 px-3 border border-border rounded-xl outline-none transition-all focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 text-foreground text-sm bg-card/80"
                         />
                       </div>
                       {form.formState.errors.imageUrl && (
@@ -124,7 +124,7 @@ export default function CommunityHero({ userId }: CommunityHeroProps) {
                         type="button"
                         onClick={() => setIsOpen(false)}
                         disabled={isPending}
-                        className="h-11 px-6 text-sm font-semibold text-slate-500 hover:bg-stone-50 rounded-xl transition-colors disabled:opacity-50">
+                        className="h-11 px-6 text-sm font-semibold text-muted-foreground hover:bg-card/80 rounded-xl transition-colors disabled:opacity-50">
                         Annuler
                       </button>
                       <button
@@ -132,7 +132,7 @@ export default function CommunityHero({ userId }: CommunityHeroProps) {
                         disabled={isPending}
                         className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold h-11 px-8 rounded-xl transition-all flex justify-center items-center gap-2 disabled:opacity-50 shadow-lg shadow-emerald-100">
                         {isPending ? (
-                          <Loader2 className="w-5 h-5 animate-spin" />
+                          <Loader2 className="w-5 h-5 animate-spin text-white" />
                         ) : (
                           "Publier maintenant"
                         )}

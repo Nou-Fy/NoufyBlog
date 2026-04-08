@@ -9,7 +9,7 @@ export function ProfilePostsList({ posts }: { posts: any[] }) {
       {" "}
       {/* Réduit de space-y-4 à space-y-4 */}
       <div className="flex justify-between items-center px-2">
-        <h2 className="text-2xl font-black text-slate-900 flex items-center gap-3">
+        <h2 className="text-2xl font-black text-foreground flex items-center gap-3">
           <FileText className="text-emerald-600 w-6 h-6" />
           Mes Publications
         </h2>
@@ -22,8 +22,8 @@ export function ProfilePostsList({ posts }: { posts: any[] }) {
       {posts.length === 0 ? (
         <div
           className={`${DESIGN_SYSTEM.colors.neutral.bg} ${DESIGN_SYSTEM.radius.lg} p-16 text-center border-2 border-dashed ${DESIGN_SYSTEM.colors.neutral.border}`}>
-          <FileText className="w-12 h-12 text-stone-200 mx-auto mb-4" />
-          <p className="text-slate-400 font-medium">
+          <FileText className="w-12 h-12 text-muted-foreground/80 mx-auto mb-4" />
+          <p className="text-muted-foreground font-medium">
             Vous n'avez pas encore publié d'article.
           </p>
         </div>
@@ -36,7 +36,7 @@ export function ProfilePostsList({ posts }: { posts: any[] }) {
               className="h-full">
               <Card
                 className={`group border-none ${DESIGN_SYSTEM.shadows.sm} hover:${DESIGN_SYSTEM.shadows.xl} ${DESIGN_SYSTEM.transitions.shadow} ${DESIGN_SYSTEM.radius.lg} ${DESIGN_SYSTEM.colors.neutral.bg} overflow-hidden flex flex-col h-full`}>
-                <div className="relative w-full h-48 flex-shrink-0 bg-stone-100">
+                <div className="relative w-full h-48 flex-shrink-0 bg-card/80">
                   {post.imageUrl ? (
                     <img
                       src={post.imageUrl}
@@ -44,7 +44,7 @@ export function ProfilePostsList({ posts }: { posts: any[] }) {
                       className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-stone-300">
+                    <div className="w-full h-full flex items-center justify-center text-muted-foreground/70">
                       <FileText className="w-10 h-10" />
                     </div>
                   )}
@@ -53,10 +53,10 @@ export function ProfilePostsList({ posts }: { posts: any[] }) {
                   <span className="text-[10px] font-black text-emerald-600 uppercase tracking-widest">
                     {post.section}
                   </span>
-                  <h3 className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2 text-sm leading-snug flex-1">
+                  <h3 className="font-bold text-foreground group-hover:text-emerald-600 transition-colors line-clamp-2 text-sm leading-snug flex-1">
                     {post.title}
                   </h3>
-                  <span className="text-[10px] text-slate-400 font-medium italic">
+                  <span className="text-[10px] text-muted-foreground font-medium italic">
                     {new Date(post.createdAt).toLocaleDateString("fr-FR")}
                   </span>
                 </div>

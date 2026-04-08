@@ -30,7 +30,7 @@ export default async function CommunautePage({
   );
 
   return (
-    <div className="flex min-h-screen w-full flex-col overflow-x-hidden bg-stone-50">
+    <div className="flex min-h-screen w-full flex-col overflow-x-hidden bg-background text-foreground">
       <CommunityHero userId={userId} />
 
       {/* Ce conteneur fait remonter les stats sur le Hero */}
@@ -40,7 +40,7 @@ export default async function CommunautePage({
         </Container>
       </div>
 
-      <Section bg="stone-50" py="lg" className="pt-0">
+      <Section bg="surface-soft" py="lg" className="pt-0">
         <Container size="full">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Colonne gauche : discussions */}
@@ -53,7 +53,7 @@ export default async function CommunautePage({
               />
               <div className="mt-12">
                 <Pagination totalPages={totalPages} />
-                <p className="text-center text-xs text-slate-400 mt-4">
+                <p className="text-center text-xs text-muted-foreground mt-4">
                   Page {page} sur {totalPages}
                 </p>
               </div>

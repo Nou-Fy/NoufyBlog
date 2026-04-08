@@ -41,13 +41,13 @@ export function UserDropdown() {
 
       <DropdownMenuContent
         align="end"
-        className="w-56 bg-white p-2 shadow-xl border-stone-200 mt-2">
+        className="w-56 bg-card p-2 shadow-xl border-border mt-2">
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-bold text-slate-900">
+            <p className="text-sm font-bold text-foreground">
               {user.prenom} {user.nom}
             </p>
-            <p className="text-xs text-slate-500">{user.email}</p>
+            <p className="text-xs text-muted-foreground">{user.email}</p>
           </div>
         </DropdownMenuLabel>
 

@@ -37,18 +37,18 @@ export default async function ProfilePage() {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-stone-50">
-        <p className="text-slate-500 font-medium">Utilisateur introuvable.</p>
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <p className="text-muted-foreground font-medium">Utilisateur introuvable.</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen w-full bg-stone-50">
+    <div className="min-h-screen w-full bg-background">
       {/* --- HEADER DU PROFIL --- */}
       <Section bg="white" py="lg">
         <Container size="full">
-          <div className="bg-white border-b border-stone-200 pt-8 pb-12 shadow-sm px-4">
+          <div className="bg-card border-b border-border pt-8 pb-12 shadow-sm px-4">
             <div className="flex flex-col md:flex-row items-center gap-8">
               {/* Avatar Upload */}
               <AvatarUpload
@@ -62,10 +62,10 @@ export default async function ProfilePage() {
                 <span className="inline-block px-3 py-1 rounded-full bg-orange-200 text-emerald-700 text-[10px] font-black uppercase tracking-widest">
                   {user.role}
                 </span>
-                <h1 className="text-4xl font-black text-slate-900">
+                <h1 className="text-4xl font-black text-foreground">
                   {user.prenom} {user.nom}
                 </h1>
-                <div className="flex flex-wrap justify-center md:justify-start gap-4 text-slate-500 text-sm">
+                <div className="flex flex-wrap justify-center md:justify-start gap-4 text-muted-foreground text-sm">
                   <span className="flex items-center gap-1.5">
                     <Mail className="w-4 h-4 text-orange-500" /> {user.email}
                   </span>
@@ -85,7 +85,7 @@ export default async function ProfilePage() {
 
                 <Button
                   variant="outline"
-                  className="rounded-2xl border-stone-200 bg-red-600 text-white hover:bg-red-100 hover:text-red-700 transition-all">
+                  className="rounded-2xl border-border bg-red-600 text-white hover:bg-red-100 hover:text-red-700 transition-all">
                   <LogOut className="w-4 h-4 mr-2" />
                   Déconnexion
                 </Button>
@@ -103,20 +103,20 @@ export default async function ProfilePage() {
             {/* Utilisation de flex-col pour l'empilement */}
             {/* 1. TABLEAU DE BORD (S'adapte automatiquement à la largeur) */}
             <aside className="w-full">
-              <Card className="rounded-[2rem] border-none shadow-xl bg-white overflow-hidden p-8">
+              <Card className="rounded-[2rem] border-none shadow-xl bg-card overflow-hidden p-8">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
                   {/* Titre et Label */}
                   <div className="flex flex-col gap-1">
-                    <h3 className="font-black text-slate-900 uppercase text-[10px] tracking-[0.2em]">
+                    <h3 className="font-black text-foreground uppercase text-[10px] tracking-[0.2em]">
                       Tableau de bord
                     </h3>
-                    <p className="text-slate-400 text-xs font-medium">
+                    <p className="text-muted-foreground text-xs font-medium">
                       Vos statistiques en direct
                     </p>
                   </div>
 
                   {/* Les stats sur une même ligne */}
-                  <div className="flex items-center gap-8 bg-stone-50 px-8 py-4 rounded-2xl border border-stone-100">
+                  <div className="flex items-center gap-8 bg-background px-8 py-4 rounded-2xl border border-border">
                     <ProfileStats
                       postsCount={user._count.posts}
                       commentsCount={user._count.comments}
@@ -128,7 +128,7 @@ export default async function ProfilePage() {
             {/* 2. LISTE DES PUBLICATIONS */}
             <section className="space-y-6">
               <div className="flex justify-between items-center px-2">
-                <h2 className="text-2xl font-black text-slate-900 flex items-center gap-3">
+                <h2 className="text-2xl font-black text-foreground flex items-center gap-3">
                   <FileText className="text-emerald-600 w-6 h-6" />
                   Mes Publications
                 </h2>
@@ -140,9 +140,9 @@ export default async function ProfilePage() {
               </div>
 
               {user.posts.length === 0 ? (
-                <div className="bg-white rounded-[2rem] p-12 text-center border-2 border-dashed border-stone-200">
-                  <FileText className="w-12 h-12 text-stone-200 mx-auto mb-4" />
-                  <p className="text-slate-400 font-medium">
+                <div className="bg-card rounded-[2rem] p-12 text-center border-2 border-dashed border-border">
+                  <FileText className="w-12 h-12 text-muted-foreground/80 mx-auto mb-4" />
+                  <p className="text-muted-foreground font-medium">
                     Vous n'avez pas encore publié d'article.
                   </p>
                 </div>
@@ -153,9 +153,9 @@ export default async function ProfilePage() {
                       key={post.id}
                       href={`/articles?view=${post.id}&from=profil`}
                       className="h-full">
-                      <Card className="group border-none shadow-sm hover:shadow-xl transition-all duration-300 rounded-[2rem] bg-white overflow-hidden cursor-pointer flex flex-col h-full">
+                      <Card className="group border-none shadow-sm hover:shadow-xl transition-all duration-300 rounded-[2rem] bg-card overflow-hidden cursor-pointer flex flex-col h-full">
                         {/* Image */}
-                        <div className="relative w-full h-48 flex-shrink-0 bg-stone-100">
+                        <div className="relative w-full h-48 flex-shrink-0 bg-card/80">
                           {post.imageUrl ? (
                             <img
                               src={post.imageUrl}
@@ -163,7 +163,7 @@ export default async function ProfilePage() {
                               className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                             />
                           ) : (
-                            <div className="w-full h-full flex items-center justify-center text-stone-300">
+                            <div className="w-full h-full flex items-center justify-center text-muted-foreground/70">
                               <FileText className="w-10 h-10" />
                             </div>
                           )}
@@ -174,10 +174,10 @@ export default async function ProfilePage() {
                           <span className="text-[10px] font-black text-emerald-600 uppercase tracking-widest">
                             {post.section}
                           </span>
-                          <h3 className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2 text-base leading-tight flex-1">
+                          <h3 className="font-bold text-foreground group-hover:text-emerald-600 transition-colors line-clamp-2 text-base leading-tight flex-1">
                             {post.title}
                           </h3>
-                          <span className="text-[10px] text-slate-400 font-medium italic">
+                          <span className="text-[10px] text-muted-foreground font-medium italic">
                             {new Date(post.createdAt).toLocaleDateString(
                               "fr-FR",
                             )}

@@ -7,19 +7,19 @@ import Section from "@/views/components/common/Section";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen w-full bg-stone-50">
+    <div className="min-h-screen w-full bg-background">
       <Section bg="white" py="lg">
         <Container size="full">
-          <div className="bg-white border-b border-stone-200 pt-20 pb-32 shadow-sm text-center">
+          <div className="bg-card border-b border-border pt-20 pb-32 shadow-sm text-center">
             <div className="max-w-3xl mx-auto space-y-4">
               <span className="inline-block px-4 py-1.5 rounded-full bg-orange-50 text-orange-700 text-[10px] font-black uppercase tracking-[0.2em]">
                 Notre Histoire
               </span>
-              <h1 className="text-5xl md:text-6xl font-black text-slate-900 leading-tight">
+              <h1 className="text-5xl md:text-6xl font-black text-foreground leading-tight">
                 Passionnés par l'élevage <br />
                 <span className="text-emerald-600">à Madagascar.</span>
               </h1>
-              <p className="text-slate-500 text-lg leading-relaxed">
+              <p className="text-muted-foreground text-lg leading-relaxed">
                 NoufyBlog est bien plus qu'une simple blog. C'est un espace de
                 partage dédié à la modernisation de l'aviculture malagasy et à
                 la préservation de races d'exception ici à Madagascar.
@@ -53,14 +53,14 @@ export default function AboutPage() {
               ].map((val, i) => (
                 <Card
                   key={i}
-                  className="rounded-[2.5rem] border-none shadow-xl bg-white p-8 hover:scale-[1.02] transition-transform">
-                  <div className="mb-6 bg-stone-50 w-16 h-16 rounded-2xl flex items-center justify-center">
+                  className="rounded-[2.5rem] border-none shadow-xl bg-card p-8 hover:scale-[1.02] transition-transform">
+                  <div className="mb-6 bg-background w-16 h-16 rounded-2xl flex items-center justify-center">
                     {val.icon}
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">
+                  <h3 className="text-xl font-bold text-foreground mb-3">
                     {val.title}
                   </h3>
-                  <p className="text-slate-500 text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     {val.desc}
                   </p>
                 </Card>
@@ -87,10 +87,10 @@ export default function AboutPage() {
                 </div>
               </div>
               <div className="space-y-4">
-                <h2 className="text-3xl font-black text-slate-900">
+                <h2 className="text-3xl font-black text-foreground">
                   Pourquoi avoir créé ce blog ?
                 </h2>
-                <div className="space-y-4 text-slate-600 leading-relaxed">
+                <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
                     L'aviculture à Madagascar possède un potentiel immense.
                     Cependant, l'accès à des informations techniques fiables
@@ -116,7 +116,7 @@ export default function AboutPage() {
                 <div className="pt-4 flex flex-wrap items-center gap-4">
                   <Link
                     href="/articles"
-                    className="bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-emerald-600 transition-all">
+                    className="bg-card/90 text-white px-8 py-4 rounded-2xl font-bold hover:bg-emerald-600 transition-all">
                     Explorer le blog
                   </Link>
 
@@ -128,7 +128,7 @@ export default function AboutPage() {
                       <span className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-600 leading-none mb-1">
                         Localisation
                       </span>
-                      <span className="text-xl font-black text-slate-900 tracking-tight leading-tight">
+                      <span className="text-xl font-black text-foreground tracking-tight leading-tight">
                         Antananarivo,{" "}
                         <span className="text-emerald-600">Madagascar</span>
                       </span>

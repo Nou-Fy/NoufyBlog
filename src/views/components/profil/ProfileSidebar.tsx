@@ -23,8 +23,8 @@ export function ProfileSidebar({ postsCount, commentsCount }: SidebarProps) {
       {/* Desktop */}
       <aside className="hidden lg:block">
         <Card
-          className={`${DESIGN_SYSTEM.radius.lg} border-none ${DESIGN_SYSTEM.shadows.xl} bg-white overflow-hidden p-8`}>
-          <h3 className="font-black text-slate-900 mb-6 uppercase text-[10px] tracking-[0.2em]">
+          className={`${DESIGN_SYSTEM.radius.lg} border-none ${DESIGN_SYSTEM.shadows.xl} bg-card overflow-hidden p-8`}>
+          <h3 className="font-black text-foreground mb-6 uppercase text-[10px] tracking-[0.2em]">
             Tableau de bord
           </h3>
           <StatsContent />
@@ -43,7 +43,7 @@ export function ProfileSidebar({ postsCount, commentsCount }: SidebarProps) {
           </CollapsibleTrigger>
           <CollapsibleContent>
             <Card
-              className={`${DESIGN_SYSTEM.radius.lg} border-none ${DESIGN_SYSTEM.shadows.xl} bg-white p-6`}>
+              className={`${DESIGN_SYSTEM.radius.lg} border-none ${DESIGN_SYSTEM.shadows.xl} bg-card p-6`}>
               <StatsContent />
             </Card>
           </CollapsibleContent>

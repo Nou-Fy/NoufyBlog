@@ -14,13 +14,13 @@ export default function NouveauPostPage() {
   });
 
   return (
-    <div className="min-h-screen w-full bg-stone-50">
+    <div className="min-h-screen w-full bg-background">
       <div className="max-w-2xl mx-auto p-6">
         <div className="mb-8">
-          <h1 className="text-3xl font-black text-slate-900">
+          <h1 className="text-3xl font-black text-foreground">
             Créer un nouvel article
           </h1>
-          <p className="text-slate-500">
+          <p className="text-muted-foreground">
             Partagez votre expertise avec la communauté.
           </p>
         </div>
@@ -35,24 +35,24 @@ export default function NouveauPostPage() {
           )}
 
           <div className="space-y-1">
-            <label className="text-xs font-bold uppercase text-slate-400">
+            <label className="text-xs font-bold uppercase text-muted-foreground">
               Titre
             </label>
             <input
               name="title"
-              className="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+              className="w-full p-3 bg-card border border-border rounded-xl outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
               placeholder="Ex: Comment vacciner ses poussins"
               required
             />
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-bold uppercase text-slate-400">
+            <label className="text-xs font-bold uppercase text-muted-foreground">
               Section
             </label>
             <select
               name="section"
-              className="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-orange-500 appearance-none">
+              className="w-full p-3 bg-card border border-border rounded-xl outline-none focus:border-orange-500 appearance-none">
               <option value="ASTUCE">Astuce</option>
               <option value="SANTE">Santé</option>
               <option value="ALIMENTATION">Alimentation</option>
@@ -60,25 +60,25 @@ export default function NouveauPostPage() {
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-bold uppercase text-slate-400">
+            <label className="text-xs font-bold uppercase text-muted-foreground">
               Lien de l'image (URL)
             </label>
             <input
               name="imageUrl"
               type="url"
-              className="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-orange-500"
+              className="w-full p-3 bg-card border border-border rounded-xl outline-none focus:border-orange-500"
               placeholder="https://images.unsplash.com/..."
             />
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-bold uppercase text-slate-400">
+            <label className="text-xs font-bold uppercase text-muted-foreground">
               Contenu
             </label>
             <textarea
               name="content"
               rows={6}
-              className="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-orange-500"
+              className="w-full p-3 bg-card border border-border rounded-xl outline-none focus:border-orange-500"
               placeholder="Écrivez votre article ici..."
               required
             />
@@ -89,7 +89,7 @@ export default function NouveauPostPage() {
             type="submit"
             className={`w-full py-4 rounded-xl font-bold text-white shadow-lg transition-all ${
               isPending
-                ? "bg-slate-400 cursor-not-allowed"
+                ? "bg-card/40 cursor-not-allowed"
                 : "bg-orange-600 hover:bg-orange-700 active:scale-[0.98]"
             }`}>
             {isPending ? (

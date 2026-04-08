@@ -38,7 +38,7 @@ export function GuideCard({ guide, isAdmin, onRefresh }: GuideCardProps) {
 
   return (
     <>
-      <Card className="relative group flex flex-col border-none shadow-md hover:shadow-xl transition-all duration-300 bg-slate-50 min-h-[350px]">
+      <Card className="relative group flex flex-col border-none shadow-md hover:shadow-xl transition-all duration-300 bg-card/5 min-h-[350px]">
         {isAdmin && (
           <div className="absolute top-4 right-4 flex gap-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
             <button
@@ -46,31 +46,31 @@ export function GuideCard({ guide, isAdmin, onRefresh }: GuideCardProps) {
                 e.stopPropagation();
                 setIsEditOpen(true);
               }}
-              className="p-2 bg-white hover:bg-blue-50 text-blue-600 rounded-full shadow-sm border border-slate-100 transition-colors">
+              className="p-2 bg-card hover:bg-blue-50 text-blue-600 rounded-full shadow-sm border border-border transition-colors">
               <Edit className="w-4 h-4" />
             </button>
             <button
               onClick={handleDelete}
-              className="p-2 bg-white hover:bg-red-50 text-red-600 rounded-full shadow-sm border border-slate-100 transition-colors">
+              className="p-2 bg-card hover:bg-red-50 text-red-600 rounded-full shadow-sm border border-border transition-colors">
               <Trash2 className="w-4 h-4" />
             </button>
           </div>
         )}
 
         <CardHeader className="p-6 pb-2">
-          <div className="p-4 rounded-2xl bg-white w-fit mb-5 shadow-sm group-hover:scale-110 transition-transform">
+          <div className="p-4 rounded-2xl bg-card w-fit mb-5 shadow-sm group-hover:scale-110 transition-transform">
             <Bird className="w-10 h-10 text-emerald-600" />
           </div>
-          <div className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">
+          <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">
             {guide.badge}
           </div>
-          <CardTitle className="text-3xl text-slate-900 leading-tight">
+          <CardTitle className="text-3xl text-foreground leading-tight">
             {guide.title}
           </CardTitle>
         </CardHeader>
 
         <CardContent className="p-6 pt-2 flex flex-col flex-1 space-y-4">
-          <p className="text-slate-700 text-base leading-relaxed line-clamp-4 flex-1">
+          <p className="text-muted-foreground text-base leading-relaxed line-clamp-4 flex-1">
             {guide.description}
           </p>
           <button

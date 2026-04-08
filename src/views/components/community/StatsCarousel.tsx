@@ -69,7 +69,7 @@ export default function StatsCarousel({ children }: StatsCarouselProps) {
               className={`h-2 rounded-full transition-all ${
                 idx === currentIndex
                   ? "w-6 bg-emerald-600"
-                  : "w-2 bg-slate-300 hover:bg-slate-400"
+                  : "w-2 bg-card/30 hover:bg-card/40"
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />

@@ -25,19 +25,19 @@ export default async function ArticleDetailModal({
 
   // 2. Assemblage de l'UI (Structure globale de la Modal)
   return (
-    <div className="min-h-screen w-full bg-stone-50 relative">
+    <div className="min-h-screen w-full bg-background relative">
       <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
         {/* Overlay */}
         <Link
           href="/articles"
-          className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm"
+          className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         />
 
-        <div className="relative w-full max-w-6xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-3 h-[90vh] animate-in zoom-in-95 duration-200">
+        <div className="relative w-full max-w-6xl bg-card rounded-[2.5rem] shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-3 h-[90vh] animate-in zoom-in-95 duration-200">
           {/* Bouton Fermer */}
           <Link
             href="/articles"
-            className="absolute top-4 right-4 z-20 p-2 bg-stone-100 text-slate-500 rounded-full hover:bg-red-500 hover:text-white transition-all shadow-sm">
+            className="absolute top-4 right-4 z-20 p-2 bg-card/80 text-muted-foreground rounded-full hover:bg-red-500 hover:text-white transition-all shadow-sm">
             <X className="w-5 h-5" />
           </Link>
 

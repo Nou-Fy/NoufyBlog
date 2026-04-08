@@ -20,18 +20,24 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>("light");
 
-  // Optionnel : Persistance du thème au chargement
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as Theme;
-    if (savedTheme) setTheme(savedTheme);
+    if (typeof window === "undefined") return;
+    const storedTheme = localStorage.getItem("theme") as Theme | null;
+    const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)")?.matches;
+    const preferredTheme: Theme = storedTheme ?? (prefersDark ? "dark" : "light");
+    setTheme(preferredTheme);
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const root = document.documentElement;
+    root.classList.toggle("dark", theme === "dark");
+    root.style.setProperty("color-scheme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    // On ajoute/enlève la classe 'dark' sur l'élément html pour Tailwind
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
   return (

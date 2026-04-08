@@ -27,11 +27,11 @@ export default function LoadingSpinner({
       )}>
       <div
         className={cn(
-          "border-slate-200 border-t-emerald-600 rounded-full animate-spin",
+          "border-border border-t-emerald-600 rounded-full animate-spin",
           sizeClasses[size],
         )}
       />
-      {label && <p className="text-sm text-slate-600 font-medium">{label}</p>}
+      {label && <p className="text-sm text-muted-foreground font-medium">{label}</p>}
     </div>
   );
 }
@@ -43,7 +43,7 @@ export function LoadingOverlay({
 }) {
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      <div className="bg-white rounded-2xl p-8 shadow-xl">
+      <div className="bg-card rounded-2xl p-8 shadow-xl">
         <LoadingSpinner size="lg" label={label} />
       </div>
     </div>

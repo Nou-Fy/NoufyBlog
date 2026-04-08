@@ -39,7 +39,7 @@ export default async function ArticlesPage({
     params.query || params.category || params.sort || params.date;
 
   return (
-    <div className="min-h-screen w-full bg-stone-50">
+    <div className="min-h-screen w-full bg-background">
       <Section bg="stone-50" py="lg">
         <Container size="full">
           <CollapsibleFilters hasFilters={!!hasFilters}>
@@ -51,12 +51,12 @@ export default async function ArticlesPage({
               <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
                 <Link
                   href="/articles"
-                  className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+                  className="absolute inset-0 bg-black/50 backdrop-blur-sm"
                 />
-                <div className="relative w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl overflow-hidden border-4 border-emerald-50">
+                <div className="relative w-full max-w-2xl bg-card rounded-[2rem] shadow-2xl overflow-hidden border-4 border-emerald-50">
                   <Link
                     href="/articles"
-                    className="absolute top-4 right-4 z-10 p-2 bg-stone-100 text-slate-400 rounded-full hover:bg-red-50 hover:text-red-500 transition-all">
+                    className="absolute top-4 right-4 z-10 p-2 bg-card/80 text-muted-foreground rounded-full hover:bg-red-50 hover:text-red-500 transition-all">
                     <X size={20} />
                   </Link>
                   <div className="max-h-[85vh] overflow-y-auto p-2">
@@ -94,7 +94,7 @@ export default async function ArticlesPage({
                 action={
                   <Link
                     href="/articles"
-                    className="mt-8 px-6 py-2 bg-slate-900 text-white rounded-full text-sm font-bold hover:bg-emerald-600 transition-colors">
+                    className="mt-8 px-6 py-2 bg-card/90 text-white rounded-full text-sm font-bold hover:bg-emerald-600 transition-colors">
                     Réinitialiser les filtres
                   </Link>
                 }

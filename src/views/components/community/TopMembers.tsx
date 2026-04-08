@@ -14,9 +14,11 @@ export default async function TopMembers() {
   if (!success || members.length === 0) return null;
 
   return (
-    <Card className="w-full bg-emerald-50 border-none shadow-none">
+    <Card className="w-full bg-card border border-border shadow-sm rounded-3xl">
       <CardHeader>
-        <CardTitle className="text-xl">Membres du mois 🏆</CardTitle>
+        <CardTitle className="text-xl text-foreground">
+          Membres du mois 🏆
+        </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {members.map((member, index) => (
@@ -27,10 +29,10 @@ export default async function TopMembers() {
             </div>
 
             <div>
-              <p className="text-sm font-bold text-slate-900">
+              <p className="text-sm font-bold text-foreground">
                 {member.nom || `Éleveur_${index + 1}`}
               </p>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-muted-foreground">
                 {member._count.posts}{" "}
                 {member._count.posts > 1
                   ? "articles partagés"

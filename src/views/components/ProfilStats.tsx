@@ -31,9 +31,9 @@ function StatCard({
   return (
     /* flex-1 permet aux deux cartes d'avoir exactement la même largeur */
     /* min-w-[120px] évite que les cartes ne deviennent trop petites */
-    <div className="flex-1 min-w-[120px] p-4 rounded-3xl bg-stone-50 text-center border border-stone-100">
+    <div className="flex-1 min-w-[120px] p-4 rounded-3xl bg-background text-center border border-border">
       <p className={`text-3xl font-black ${color}`}>{value}</p>
-      <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">
+      <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider">
         {label}
       </p>
     </div>

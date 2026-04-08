@@ -24,17 +24,17 @@ export default function EmptyState({
     <div
       className={`flex flex-col items-center justify-center py-20 px-4 ${className || ""}`}>
       {Icon && (
-        <div className="mb-6 p-4 rounded-full bg-slate-100">
-          <Icon className="w-12 h-12 text-slate-400" />
+        <div className="mb-6 p-4 rounded-full bg-card/10">
+          <Icon className="w-12 h-12 text-muted-foreground" />
         </div>
       )}
 
-      <h3 className="text-2xl font-bold text-slate-900 mb-2 text-center">
+      <h3 className="text-2xl font-bold text-foreground mb-2 text-center">
         {title}
       </h3>
 
       {description && (
-        <p className="text-slate-600 text-center mb-6 max-w-md">
+        <p className="text-muted-foreground text-center mb-6 max-w-md">
           {description}
         </p>
       )}

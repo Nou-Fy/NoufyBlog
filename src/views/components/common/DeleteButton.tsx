@@ -48,7 +48,7 @@ export default function DeleteButton({
             e.stopPropagation();
             setIsConfirming(false);
           }}
-          className="text-[0.6875rem] xs:text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-800 dark:text-slate-300 dark:hover:text-slate-100 hover:underline disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap transition-colors">
+          className="text-[0.6875rem] xs:text-xs sm:text-sm font-bold text-muted-foreground hover:text-foreground dark:text-muted-foreground/70 dark:hover:text-muted-foreground/50 hover:underline disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap transition-colors">
           Annuler
         </button>
       </div>
@@ -61,7 +61,7 @@ export default function DeleteButton({
         e.stopPropagation();
         setIsConfirming(true);
       }}
-      className="inline-flex items-center justify-center text-slate-400 hover:text-red-600 transition-colors duration-200"
+      className="inline-flex items-center justify-center text-muted-foreground hover:text-red-600 transition-colors duration-200"
       title={`Supprimer ${itemName}`}>
       <Trash2 className="w-4 h-4 xs:w-4.5 sm:w-5 xs:h-4 sm:h-5" />
     </button>

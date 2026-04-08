@@ -18,7 +18,7 @@ export default function AuthButtons() {
       <div className="flex gap-4">
         <button
           onClick={() => setModalOpen({ isOpen: true, type: "sign-in" })}
-          className="flex items-center gap-2 px-6 py-2.5 bg-white border border-stone-200 text-slate-900 font-bold rounded-xl hover:bg-stone-50 transition-all shadow-sm">
+          className="flex items-center gap-2 px-6 py-2.5 bg-card border border-border text-foreground font-bold rounded-xl hover:bg-background transition-all shadow-sm">
           <LogInIcon size={18} className="text-emerald-600" />
           Se connecter
         </button>

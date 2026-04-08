@@ -19,12 +19,12 @@ export default function GuideClientPage({
   const router = useRouter();
 
   return (
-    <div className="min-h-screen w-full bg-stone-50">
+    <div className="min-h-screen w-full bg-background">
       {/* HEADER SECTION */}
       <Section bg="amber-50" py="lg">
         <Container size="full">
           <div className="text-center">
-            <h1 className="text-4xl font-extrabold text-slate-900">
+            <h1 className="text-4xl font-extrabold text-foreground">
               Le Guide de l'Élevage
             </h1>
           </div>
@@ -66,10 +66,10 @@ export default function GuideClientPage({
       {isModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div
-            className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setIsModalOpen(false)}
           />
-          <div className="relative bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+          <div className="relative bg-card rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <GuideForm
               onClose={() => setIsModalOpen(false)}
               onSuccess={() => {

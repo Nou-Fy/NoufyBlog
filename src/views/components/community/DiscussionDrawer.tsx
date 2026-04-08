@@ -72,34 +72,31 @@ export default function DiscussionDrawer({
   return createPortal(
     <div className="fixed inset-0 z-[100] flex justify-end overflow-x-hidden">
       {/* Overlay */}
-      <div
-        className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"
-        onClick={onClose}
-      />
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
 
       {/* Panel */}
-      <div className="relative w-full max-w-md h-full bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+      <div className="relative w-full max-w-md h-full bg-card border border-border shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-slate-100">
-          <h2 className="text-xl font-bold text-slate-900">Discussion</h2>
+        <div className="flex items-center justify-between p-6 border-b border-border">
+          <h2 className="text-xl font-bold text-foreground">Discussion</h2>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-slate-100 rounded-full text-slate-400 transition-colors">
+            className="p-2 hover:bg-card/70 rounded-full text-muted-foreground transition-colors">
             <X className="w-6 h-6" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 bg-slate-50/50 space-y-4">
+        <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-background">
           <DiscussionHeader discussion={discussion} />
 
           <div className="space-y-4">
-            <h3 className="text-sm font-bold text-slate-700 px-1">
+            <h3 className="text-sm font-bold text-muted-foreground px-1">
               Réponses ({responses.length})
             </h3>
 
             {isLoading ? (
-              <div className="text-center py-10 text-slate-400 text-sm flex flex-col items-center gap-2">
+              <div className="text-center py-10 text-sm flex flex-col items-center gap-2 text-muted-foreground">
                 <div className="w-5 h-5 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
                 Chargement...
               </div>
@@ -107,17 +104,17 @@ export default function DiscussionDrawer({
               responses.map((resp: any) => (
                 <div
                   key={resp.id}
-                  className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm transition-all hover:shadow-md">
+                  className="bg-card/80 p-4 rounded-xl border border-border shadow-sm transition-all hover:shadow-md">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <div className="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center">
                         <User className="w-3 h-3 text-emerald-600" />
                       </div>
                       <div className="flex flex-col">
-                        <span className="text-xs font-bold text-slate-700">
+                        <span className="text-xs font-bold text-card-foreground">
                           {resp.author?.nom || "Éleveur"}
                         </span>
-                        <span className="text-[10px] text-slate-400">
+                        <span className="text-[10px] text-muted-foreground">
                           {new Date(resp.createdAt).toLocaleDateString()}
                         </span>
                       </div>
@@ -132,7 +129,7 @@ export default function DiscussionDrawer({
                     )}
                   </div>
 
-                  <p className="text-sm text-slate-600 ml-8 whitespace-pre-wrap">
+                  <p className="text-sm text-muted-foreground ml-8 whitespace-pre-wrap">
                     {resp.content}
                   </p>
 
@@ -140,15 +137,15 @@ export default function DiscussionDrawer({
                     <img
                       src={resp.imageUrl}
                       alt="Illustration"
-                      className="mt-3 rounded-lg max-h-40 ml-8 object-cover border border-slate-100"
+                      className="mt-3 rounded-lg max-h-40 ml-8 object-cover border border-border"
                     />
                   )}
                 </div>
               ))
             ) : (
               <div className="text-center py-10">
-                <MessageCircle className="w-10 h-10 text-slate-200 mx-auto mb-2" />
-                <p className="text-sm text-slate-400 italic">
+                <MessageCircle className="w-10 h-10 text-muted-foreground/50 mx-auto mb-2" />
+                <p className="text-sm text-muted-foreground italic">
                   Aucune réponse pour le moment.
                 </p>
               </div>
@@ -157,7 +154,7 @@ export default function DiscussionDrawer({
         </div>
 
         {/* Footer avec formulaire */}
-        <div className="p-4 bg-white border-t border-slate-100">
+        <div className="p-4 bg-card/80 border-t border-border">
           {userId && (
             <CommentForm
               discussionId={discussion.id}

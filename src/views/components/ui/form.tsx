@@ -1,39 +1,53 @@
+"use client";
+
 import * as React from "react";
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
 import {
   Controller,
-  ControllerProps,
-  FieldPath,
-  FieldValues,
   FormProvider,
+  useForm,
   useFormContext,
+  type ControllerProps,
+  type FieldPath,
+  type FieldValues,
 } from "react-hook-form";
-
 import { cn } from "@/lib/utils";
 
 const Form = FormProvider;
 
-interface FormFieldContextValue<
+type FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> {
+> = {
   name: TName;
-}
+};
 
 const FormFieldContext = React.createContext<FormFieldContextValue>(
   {} as FormFieldContextValue,
 );
 
-const FormField = React.forwardRef<
-  React.ElementRef<typeof Controller>,
-  React.ComponentPropsWithoutRef<typeof Controller> & FormFieldContextValue
->(({ ...props }, ref) => (
-  <FormFieldContext.Provider value={{ name: props.name }}>
-    <Controller {...(props as any)} />
-  </FormFieldContext.Provider>
-));
-FormField.displayName = "FormField";
+// ✅ IMPORTANT: composant générique (pas de forwardRef ici)
+const FormField = <
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+>({
+  ...props
+}: ControllerProps<TFieldValues, TName>) => {
+  return (
+    <FormFieldContext.Provider value={{ name: props.name }}>
+      <Controller {...props} />
+    </FormFieldContext.Provider>
+  );
+};
+
+type FormItemContextValue = {
+  id: string;
+};
+
+const FormItemContext = React.createContext<FormItemContextValue>(
+  {} as FormItemContextValue,
+);
 
 const useFormField = () => {
   const fieldContext = React.useContext(FormFieldContext);
@@ -57,14 +71,6 @@ const useFormField = () => {
     ...fieldState,
   };
 };
-
-interface FormItemContextValue {
-  id: string;
-}
-
-const FormItemContext = React.createContext<FormItemContextValue>(
-  {} as FormItemContextValue,
-);
 
 const FormItem = React.forwardRef<
   HTMLDivElement,
@@ -90,7 +96,7 @@ const FormLabel = React.forwardRef<
     <LabelPrimitive.Root
       ref={ref}
       className={cn(
-        "text-sm font-medium text-slate-900 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+        "text-sm font-medium text-foreground leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
         error && "text-red-500",
         className,
       )}
@@ -113,9 +119,7 @@ const FormControl = React.forwardRef<
       ref={ref}
       id={formItemId}
       aria-describedby={
-        !error
-          ? `${formDescriptionId}`
-          : `${formDescriptionId} ${formMessageId}`
+        !error ? formDescriptionId : `${formDescriptionId} ${formMessageId}`
       }
       aria-invalid={!!error}
       {...props}
@@ -127,21 +131,28 @@ FormControl.displayName = "FormControl";
 const FormDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => (
-  <p ref={ref} className={cn("text-sm text-slate-500", className)} {...props} />
-));
+>(({ className, ...props }, ref) => {
+  const { formDescriptionId } = useFormField();
+
+  return (
+    <p
+      ref={ref}
+      id={formDescriptionId}
+      className={cn("text-sm text-muted-foreground", className)}
+      {...props}
+    />
+  );
+});
 FormDescription.displayName = "FormDescription";
 
 const FormMessage = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => {
+>(({ className, children, ...props }, ref) => {
   const { error, formMessageId } = useFormField();
-  const body = error ? String(error?.message) : "";
+  const body = error ? String(error?.message ?? "") : children;
 
-  if (!body) {
-    return null;
-  }
+  if (!body) return null;
 
   return (
     <p
@@ -156,6 +167,7 @@ const FormMessage = React.forwardRef<
 FormMessage.displayName = "FormMessage";
 
 export {
+  useForm,
   useFormField,
   Form,
   FormItem,
@@ -165,3 +177,5 @@ export {
   FormMessage,
   FormField,
 };
+
+export type { SubmitHandler } from "react-hook-form";

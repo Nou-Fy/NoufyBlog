@@ -29,10 +29,10 @@ export default function Pagination({ totalPages }: PaginationProps) {
       {/* Previous */}
       <Link
         href={createPageURL(searchParams, Math.max(1, currentPage - 1))}
-        className={`p-2 rounded-xl border border-stone-200 ${
+        className={`p-2 rounded-xl border border-border ${
           currentPage === 1
             ? "pointer-events-none opacity-40"
-            : "hover:bg-stone-100 text-slate-600"
+            : "hover:bg-card/80 text-muted-foreground"
         }`}>
         <ChevronLeft className="w-5 h-5" />
       </Link>
@@ -42,7 +42,7 @@ export default function Pagination({ totalPages }: PaginationProps) {
         {pages.map((page, index) => {
           if (page === "...") {
             return (
-              <div key={index} className="px-2 text-slate-400">
+              <div key={index} className="px-2 text-muted-foreground">
                 <MoreHorizontal className="w-4 h-4" />
               </div>
             );
@@ -64,7 +64,7 @@ export default function Pagination({ totalPages }: PaginationProps) {
               className={`min-w-[40px] h-10 flex items-center justify-center rounded-xl text-sm font-bold ${
                 isActive
                   ? "bg-emerald-600 text-white"
-                  : "text-slate-500 hover:bg-stone-100"
+                  : "text-muted-foreground hover:bg-card/80"
               }`}>
               {page}
             </Link>
@@ -78,10 +78,10 @@ export default function Pagination({ totalPages }: PaginationProps) {
           searchParams,
           Math.min(totalPages, currentPage + 1),
         )}
-        className={`p-2 rounded-xl border border-stone-200 ${
+        className={`p-2 rounded-xl border border-border ${
           currentPage === totalPages
             ? "pointer-events-none opacity-40"
-            : "hover:bg-stone-100 text-slate-600"
+            : "hover:bg-card/80 text-muted-foreground"
         }`}>
         <ChevronRight className="w-5 h-5" />
       </Link>

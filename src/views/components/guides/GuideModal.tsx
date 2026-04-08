@@ -33,10 +33,10 @@ export function GuideModal({ guide, isOpen, onClose }: GuideModalProps) {
           <div className="text-[10px] font-bold uppercase tracking-widest text-emerald-600 mb-2">
             {guide.badge}
           </div>
-          <DialogTitle className="text-3xl font-bold text-slate-900">
+          <DialogTitle className="text-3xl font-bold text-foreground">
             {guide.title}
           </DialogTitle>
-          <p className="text-sm text-slate-500 mt-2 italic">
+          <p className="text-sm text-muted-foreground mt-2 italic">
             {guide.description}
           </p>
         </DialogHeader>
@@ -48,7 +48,7 @@ export function GuideModal({ guide, isOpen, onClose }: GuideModalProps) {
               on utilise 'whitespace-pre-wrap'. 
               Si c'est du HTML provenant d'un éditeur, utilise dangerouslySetInnerHTML.
             */}
-            <div className="text-slate-700 leading-relaxed whitespace-pre-wrap">
+            <div className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
               {guide.content}
             </div>
           </div>
@@ -57,7 +57,7 @@ export function GuideModal({ guide, isOpen, onClose }: GuideModalProps) {
         <div className="mt-6 pt-4 border-t flex justify-end">
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-slate-900 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors">
+            className="px-4 py-2 bg-card/90 text-white rounded-lg text-sm font-medium hover:bg-card/80 transition-colors">
             Fermer la lecture
           </button>
         </div>

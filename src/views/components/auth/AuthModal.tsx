@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import { Mail, Lock, User, ShieldCheck, X } from "lucide-react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler } from "@/views/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { loginUser } from "@/app/api/actions/login";
@@ -118,21 +119,21 @@ export default function AuthModal({
     reset({ isSignIn: mode, nom: "", prenom: "", email: "", password: "" });
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+  return createPortal(
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm overflow-y-auto">
       <div
-        className={`relative w-full max-w-md ${DESIGN_SYSTEM.colors.neutral.bg} ${DESIGN_SYSTEM.radius.xl} shadow-2xl p-8 md:p-10 animate-in fade-in zoom-in duration-300`}>
+        className={`relative w-full max-w-md mx-4 my-auto ${DESIGN_SYSTEM.colors.neutral.bg} ${DESIGN_SYSTEM.radius.xl} shadow-2xl p-8 md:p-10 animate-in fade-in zoom-in duration-300 max-h-[90vh] overflow-y-auto`}>
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 hover:bg-stone-100 rounded-full transition-colors">
-          <X className="w-5 h-5 text-slate-400" />
+          className="absolute top-6 right-6 p-2 hover:bg-card/80 rounded-full transition-colors">
+          <X className="w-5 h-5 text-muted-foreground" />
         </button>
 
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-emerald-50 mb-4 text-emerald-600">
             <ShieldCheck size={32} />
           </div>
-          <h2 className="text-3xl font-black text-slate-900">
+          <h2 className="text-3xl font-black text-foreground">
             {isSignIn ? "Bon retour !" : "Rejoindre Noufy"}
           </h2>
         </div>
@@ -144,16 +145,16 @@ export default function AuthModal({
           {!isSignIn && (
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-[10px] font-black uppercase text-slate-400 ml-1">
+                <label className="text-[10px] font-black uppercase text-muted-foreground ml-1">
                   Nom
                 </label>
                 <input
                   {...register("nom")}
                   placeholder="Rakoto"
-                  className={`w-full px-4 py-3 bg-stone-50 border rounded-2xl text-sm text-slate-900 outline-none transition-all ${
+                  className={`w-full px-4 py-3 bg-background border rounded-2xl text-sm text-foreground outline-none transition-all ${
                     errors.nom
                       ? "border-red-500 ring-1 ring-red-500"
-                      : "border-stone-100"
+                      : "border-border"
                   }`}
                 />
                 {errors.nom && (
@@ -164,16 +165,16 @@ export default function AuthModal({
               </div>
 
               <div className="space-y-1">
-                <label className="text-[10px] font-black uppercase text-slate-400 ml-1">
+                <label className="text-[10px] font-black uppercase text-muted-foreground ml-1">
                   Prénom
                 </label>
                 <input
                   {...register("prenom")}
                   placeholder="Jean"
-                  className={`w-full px-4 py-3 bg-stone-50 border rounded-2xl text-sm text-slate-900 outline-none transition-all ${
+                  className={`w-full px-4 py-3 bg-background border rounded-2xl text-sm text-foreground outline-none transition-all ${
                     errors.prenom
                       ? "border-red-500 ring-1 ring-red-500"
-                      : "border-stone-100"
+                      : "border-border"
                   }`}
                 />
                 {errors.prenom && (
@@ -186,18 +187,18 @@ export default function AuthModal({
           )}
 
           <div className="space-y-1">
-            <label className="text-[10px] font-black uppercase text-slate-400 ml-1">
+            <label className="text-[10px] font-black uppercase text-muted-foreground ml-1">
               Email
             </label>
             <div className="relative">
-              <Mail className="absolute left-4 top-3.5 w-4 h-4 text-slate-400" />
+              <Mail className="absolute left-4 top-3.5 w-4 h-4 text-muted-foreground" />
               <input
                 {...register("email")}
                 placeholder="nom@exemple.mg"
-                className={`w-full pl-11 pr-4 py-3 bg-stone-50 border rounded-2xl text-sm text-slate-900 outline-none transition-all ${
+                className={`w-full pl-11 pr-4 py-3 bg-background border rounded-2xl text-sm text-foreground outline-none transition-all ${
                   errors.email
                     ? "border-red-500 ring-1 ring-red-500"
-                    : "border-stone-100"
+                    : "border-border"
                 }`}
               />
             </div>
@@ -209,19 +210,19 @@ export default function AuthModal({
           </div>
 
           <div className="space-y-1">
-            <label className="text-[10px] font-black uppercase text-slate-400 ml-1">
+            <label className="text-[10px] font-black uppercase text-muted-foreground ml-1">
               Mot de passe
             </label>
             <div className="relative">
-              <Lock className="absolute left-4 top-3.5 w-4 h-4 text-slate-400" />
+              <Lock className="absolute left-4 top-3.5 w-4 h-4 text-muted-foreground" />
               <input
                 {...register("password")}
                 type="password"
                 placeholder="••••••••"
-                className={`w-full pl-11 pr-4 py-3 bg-stone-50 border rounded-2xl text-sm text-slate-900 outline-none transition-all ${
+                className={`w-full pl-11 pr-4 py-3 bg-background border rounded-2xl text-sm text-foreground outline-none transition-all ${
                   errors.password
                     ? "border-red-500 ring-1 ring-red-500"
-                    : "border-stone-100"
+                    : "border-border"
                 }`}
               />
             </div>
@@ -235,7 +236,7 @@ export default function AuthModal({
           <button
             disabled={isSubmitting}
             type="submit"
-            className="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-emerald-600 disabled:bg-slate-400 transition-all shadow-lg mt-4">
+            className="w-full py-4 bg-card/90 text-white rounded-2xl font-bold hover:bg-emerald-600 disabled:bg-card/40 transition-all shadow-lg mt-4">
             {isSubmitting
               ? "Chargement..."
               : isSignIn
@@ -253,7 +254,7 @@ export default function AuthModal({
         )}
 
         <div className="mt-8 text-center">
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-muted-foreground">
             {isSignIn ? (
               <>
                 Pas encore de compte ?{" "}
@@ -276,6 +277,7 @@ export default function AuthModal({
           </p>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

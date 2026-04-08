@@ -46,7 +46,7 @@ export function ArticleContent({ article, userId }: ArticleContentProps) {
   };
 
   return (
-    <div className="md:col-span-2 overflow-y-auto p-6 md:p-12 border-r border-stone-100 relative">
+    <div className="md:col-span-2 overflow-y-auto p-6 md:p-12 border-r border-border relative">
       <div className="relative group">
         <img
           src={article.imageUrl || "/api/placeholder/800/400"}
@@ -66,21 +66,21 @@ export function ArticleContent({ article, userId }: ArticleContentProps) {
           {article.section}
         </span>
 
-        <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-[1.1]">
+        <h2 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1]">
           {article.title}
         </h2>
 
-        <div className="flex items-center justify-between py-6 border-y border-stone-50">
-          <div className="flex items-center gap-6 text-sm text-slate-400">
-            <div className="flex items-center gap-2 font-medium text-slate-600">
+        <div className="flex items-center justify-between py-6 border-y border-border/60">
+          <div className="flex items-center gap-6 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2 font-medium text-foreground">
               <div className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
                 <User className="w-4 h-4" />
               </div>
               {/* Sécurisé ici aussi */}
               {article.author?.nom || "Éleveur"}
             </div>
-            <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-stone-300" />
+            <div className="flex items-center gap-2 text-muted-foreground/80">
+              <Clock className="w-4 h-4 text-muted-foreground/80" />
               <span>
                 {new Date(article.createdAt).toLocaleDateString("fr-FR", {
                   day: "numeric",
@@ -92,7 +92,7 @@ export function ArticleContent({ article, userId }: ArticleContentProps) {
           </div>
         </div>
 
-        <p className="text-slate-700 leading-relaxed text-lg whitespace-pre-wrap pb-10">
+        <p className="text-muted-foreground leading-relaxed text-lg whitespace-pre-wrap pb-10">
           {article.content}
         </p>
       </div>

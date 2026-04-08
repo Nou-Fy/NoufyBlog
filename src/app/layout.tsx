@@ -5,6 +5,7 @@ import { AuthProvider } from "@/context/AuthContext";
 import HeaderNew from "@/views/components/HeaderNew";
 import FooterNew from "@/views/components/FooterNew";
 import { cookies } from "next/headers";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,12 +25,14 @@ export default async function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${inter.className} bg-stone-50 text-slate-900 min-h-screen flex flex-col`}>
-        <AuthProvider>
-          <HeaderNew />
-          <main className="flex-1">{children}</main>
-          <FooterNew isLoggedInServer={hasSession} />
-        </AuthProvider>
+        className={`${inter.className} bg-background text-foreground min-h-screen flex flex-col`}>
+        <ThemeProvider>
+          <AuthProvider>
+            <HeaderNew />
+            <main className="flex-1">{children}</main>
+            <FooterNew isLoggedInServer={hasSession} />
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

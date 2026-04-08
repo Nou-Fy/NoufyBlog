@@ -4,24 +4,24 @@ export default function Loading() {
       <div className="grid md:grid-cols-2 gap-8 items-center">
         <div className="space-y-4">
           <div className="h-4 w-32 bg-orange-100 rounded-full" />
-          <div className="h-12 w-full bg-slate-200 rounded-lg" />
-          <div className="h-6 w-3/4 bg-slate-100 rounded-md" />
+          <div className="h-12 w-full bg-card/20 rounded-lg" />
+          <div className="h-6 w-3/4 bg-card/10 rounded-md" />
           <div className="flex gap-4">
             <div className="h-10 w-32 bg-emerald-100 rounded-md" />
-            <div className="h-10 w-32 bg-slate-200 rounded-md" />
+            <div className="h-10 w-32 bg-card/20 rounded-md" />
           </div>
         </div>
-        <div className="aspect-video bg-stone-200 rounded-3xl" />
+        <div className="aspect-video bg-card/70 rounded-3xl" />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-12">
         {[1, 2, 3, 4].map((i) => (
           <div
             key={i}
-            className="h-48 bg-white border border-slate-100 rounded-2xl p-6 space-y-4 shadow-sm">
+            className="h-48 bg-card border border-border rounded-2xl p-6 space-y-4 shadow-sm">
             <div className="h-10 w-10 bg-amber-100 rounded-xl" />
-            <div className="h-6 w-3/4 bg-slate-200 rounded-md" />
-            <div className="h-12 w-full bg-slate-100 rounded-md" />
+            <div className="h-6 w-3/4 bg-card/20 rounded-md" />
+            <div className="h-12 w-full bg-card/10 rounded-md" />
           </div>
         ))}
       </div>

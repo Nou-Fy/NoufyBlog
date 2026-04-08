@@ -26,10 +26,10 @@ export const DESIGN_SYSTEM = {
       border: "border-orange-200",
     },
     neutral: {
-      bg: "bg-white",
-      text: "text-slate-700",
-      border: "border-stone-200",
-      light: "bg-stone-50",
+      bg: "bg-card",
+      text: "text-muted-foreground",
+      border: "border-border",
+      light: "bg-background",
     },
   },
 

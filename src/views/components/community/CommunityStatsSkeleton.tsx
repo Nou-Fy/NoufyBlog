@@ -5,7 +5,7 @@ export default function CommunityStatsSkeleton() {
         {[1, 2, 3].map((i) => (
           <div
             key={i}
-            className="h-32 bg-slate-100 animate-pulse rounded-2xl"
+            className="h-32 bg-card/10 animate-pulse rounded-2xl"
           />
         ))}
       </div>

@@ -19,9 +19,9 @@ export default async function RecentMembers() {
   if (!success || members.length === 0) return null;
 
   return (
-    <Card className="w-full border-stone-200 shadow-sm">
+    <Card className="w-full border border-border bg-card shadow-sm rounded-3xl">
       <CardHeader>
-        <CardTitle className="text-lg font-semibold text-emerald-900 capitalize">
+        <CardTitle className="text-lg font-semibold text-foreground capitalize">
           Nouveaux de {currentMonth} ✨
         </CardTitle>
       </CardHeader>
@@ -30,16 +30,16 @@ export default async function RecentMembers() {
           {members.map((member) => (
             <div
               key={member.id}
-              className="flex items-center justify-between group">
+              className="flex items-center justify-between group rounded-2xl border border-border bg-card/80 p-3">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-stone-100 border border-stone-200 flex items-center justify-center text-xs font-bold text-stone-600 uppercase">
+                <div className="w-8 h-8 rounded-full bg-card/70 border border-border flex items-center justify-center text-xs font-bold uppercase text-muted-foreground">
                   {member.nom?.substring(0, 2) || "NV"}
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-slate-800">
+                  <p className="text-sm font-medium text-foreground">
                     {member.nom || "Éleveur anonyme"}
                   </p>
-                  <p className="text-[10px] text-slate-400">
+                  <p className="text-[10px] text-muted-foreground">
                     Inscrit le{" "}
                     {new Date(member.createdAt).toLocaleDateString("fr-FR")}
                   </p>

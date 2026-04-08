@@ -14,7 +14,7 @@ const CollapsibleTrigger = React.forwardRef<
   <CollapsiblePrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex w-full items-center justify-between px-4 py-3 font-semibold text-slate-900 hover:bg-stone-100 rounded-lg transition-colors data-[state=open]:bg-stone-100",
+      "flex w-full items-center justify-between px-4 py-3 font-semibold text-foreground hover:bg-card/80 rounded-lg transition-colors data-[state=open]:bg-card/80",
       className,
     )}
     {...props}>

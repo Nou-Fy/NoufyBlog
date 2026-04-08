@@ -7,7 +7,7 @@ export default function ArticlesLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-stone-50">
+    <div className="min-h-screen overflow-x-hidden bg-background">
       <Container size="full" className="py-8">
         {/* Conteneur Principal : Aligne le bloc texte à gauche et le bouton à droite */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
@@ -16,7 +16,7 @@ export default function ArticlesLayout({
             <span className="text-emerald-600 font-bold tracking-widest text-sm uppercase block">
               Le Blog des Éleveurs Malagasy
             </span>
-            <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight">
+            <h1 className="text-4xl font-extrabold text-foreground tracking-tight">
               Dernières <span className="text-orange-600">Publications</span>
             </h1>
           </div>

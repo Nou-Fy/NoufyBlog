@@ -54,13 +54,13 @@ export default function DiscussionItem({
     <>
       <div
         onClick={handleOpen}
-        className={`p-5 w-full min-w-0 bg-white rounded-xl border border-slate-100 shadow-sm transition-all ${
+        className={`p-5 w-full min-w-0 bg-card border border-border rounded-xl shadow-sm transition-all ${
           isAuthenticated
-            ? "hover:border-emerald-200 hover:shadow-md cursor-pointer group"
-            : "opacity-75 cursor-not-allowed"
+            ? "hover:border-emerald-400/70 hover:shadow-md cursor-pointer group"
+            : "opacity-70 cursor-not-allowed"
         }`}>
         <div className="flex justify-between items-start mb-3">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-2 py-1 rounded">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-500 bg-card/80 px-2 py-1 rounded">
             Discussion
           </span>
 
@@ -72,25 +72,25 @@ export default function DiscussionItem({
                 itemName="votre discussion"
               />
             )}
-            {!isAuthenticated && <Lock className="w-3 h-3 text-slate-400" />}
+            {!isAuthenticated && <Lock className="w-3 h-3 text-muted-foreground" />}
           </div>
         </div>
 
-        <h3
-          className={`font-bold text-slate-800 mb-3 line-clamp-2 ${
-            isAuthenticated && "group-hover:text-emerald-700"
-          }`}>
-          {discussion.content}
-        </h3>
+          <h3
+            className={`font-bold text-foreground mb-3 line-clamp-2 ${
+              isAuthenticated ? "group-hover:text-emerald-500" : ""
+            }`}>
+            {discussion.content}
+          </h3>
 
-        <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-50">
-          <p className="text-xs text-slate-500">
+        <div className="flex items-center justify-between mt-4 pt-4 border-t border-border/60">
+          <p className="text-xs text-muted-foreground">
             Par{" "}
-            <span className="font-semibold text-slate-700">
+            <span className="font-semibold text-card-foreground">
               {discussion.author.nom || "Éleveur"}
             </span>
           </p>
-          <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-600">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-500">
             <MessageSquare className="w-4 h-4" />
             <span>{discussion._count.comments} réponses</span>
           </div>

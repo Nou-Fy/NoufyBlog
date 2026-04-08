@@ -17,7 +17,7 @@ export default function StatCard({
   textColor,
 }: StatCardProps) {
   return (
-    <Card className="border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300 bg-white rounded-2xl overflow-hidden">
+    <Card className="border border-border shadow-sm hover:shadow-md transition-shadow duration-300 bg-card text-card-foreground rounded-2xl overflow-hidden">
       <CardContent className="pl-4 sm:pl-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
         {/* L'icône utilise le bgColor et le textColor pour rester assortie */}
         <div
@@ -31,7 +31,7 @@ export default function StatCard({
             className={`text-xs sm:text-sm font-medium uppercase tracking-wide ${textColor}`}>
             {label}
           </span>
-          <span className="text-2xl sm:text-3xl font-black text-slate-900 break-words">
+          <span className="text-2xl sm:text-3xl font-black text-foreground break-words">
             {value.toLocaleString()}
           </span>
         </div>

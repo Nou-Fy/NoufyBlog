@@ -19,13 +19,13 @@ export default function DiscussionFilters() {
 
   return (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-      <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-lg w-fit">
+      <div className="flex items-center gap-1 bg-card/80 border border-border p-1 rounded-lg w-fit">
         <button
           onClick={() => handleSort("desc")}
           className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-sm transition-all ${
             currentSort === "desc"
-              ? "bg-white text-emerald-700 shadow-sm font-bold"
-              : "text-slate-500 hover:text-slate-700"
+              ? "bg-emerald-600 text-white shadow-sm font-bold"
+              : "text-muted-foreground hover:text-foreground"
           }`}>
           <Clock className="w-4 h-4" />
           Plus récents
@@ -35,15 +35,15 @@ export default function DiscussionFilters() {
           onClick={() => handleSort("asc")}
           className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-sm transition-all ${
             currentSort === "asc"
-              ? "bg-white text-emerald-700 shadow-sm font-bold"
-              : "text-slate-500 hover:text-slate-700"
+              ? "bg-emerald-600 text-white shadow-sm font-bold"
+              : "text-muted-foreground hover:text-foreground"
           }`}>
           <CalendarDays className="w-4 h-4" />
           Plus anciens
         </button>
       </div>
 
-      <span className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider italic">
+      <span className="text-[11px] text-muted-foreground font-semibold uppercase tracking-wider italic">
         Trié par date d'ajout
       </span>
     </div>
