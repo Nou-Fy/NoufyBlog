@@ -33,7 +33,7 @@ export function UserDropdown() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="flex items-center gap-2 text-white hover:bg-emerald-800 hover:text-orange-400 font-semibold focus-visible:ring-0">
+          className="flex items-center gap-2 text-white hover:bg-white hover:text-orange-400 font-semibold focus-visible:ring-0">
           <UserCircle size={22} className="text-orange-400" />
           <span className="hidden lg:inline">{user.prenom}</span>
         </Button>
@@ -55,14 +55,16 @@ export function UserDropdown() {
 
         <DropdownMenuItem
           onSelect={() => router.push("/profil")}
-          className="cursor-pointer gap-2 focus:bg-emerald-50">
-          <User size={16} /> Profil
+          className="cursor-pointer gap-2 transition-transform duration-500 text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-950 hover:text-emerald-700 dark:hover:text-emerald-300 hover:scale-125 focus:bg-emerald-50 dark:focus:bg-emerald-950 focus:text-emerald-700 dark:focus:text-emerald-300"
+          style={{ transformOrigin: "left center" }}>
+          Profil
         </DropdownMenuItem>
 
         <DropdownMenuItem
           onSelect={() => router.push("/dashboard")}
-          className="cursor-pointer gap-2 focus:bg-emerald-50">
-          <LayoutDashboard size={16} /> Dashboard
+          className="cursor-pointer gap-2 transition-transform duration-500 text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-950 hover:text-emerald-700 dark:hover:text-emerald-300 hover:scale-125 focus:bg-emerald-50 dark:focus:bg-emerald-950 focus:text-emerald-700 dark:focus:text-emerald-300"
+          style={{ transformOrigin: "left center" }}>
+          Dashboard
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
@@ -70,8 +72,8 @@ export function UserDropdown() {
         <DropdownMenuItem
           onClick={handleLogout}
           disabled={logoutLoading}
-          className="cursor-pointer text-red-600 font-bold gap-2 focus:bg-red-50">
-          <LogOut size={16} />
+          className="cursor-pointer transition-transform duration-500 text-red-600 dark:text-red-400 font-bold gap-2 hover:bg-red-50 dark:hover:bg-red-950 hover:text-red-700 dark:hover:text-red-300 hover:scale-125 focus:bg-red-50 dark:focus:bg-red-950 focus:text-red-700 dark:focus:text-red-300"
+          style={{ transformOrigin: "left center" }}>
           {logoutLoading ? "Déconnexion..." : "Déconnexion"}
         </DropdownMenuItem>
       </DropdownMenuContent>
