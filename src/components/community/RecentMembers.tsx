@@ -1,11 +1,6 @@
 // src/views/components/RecentMembers.tsx
 import React from "react";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { getLatestMonthlyMembers } from "@/app/api/actions/membre.actions";
 
 export default async function RecentMembers() {
@@ -19,7 +14,7 @@ export default async function RecentMembers() {
   if (!success || members.length === 0) return null;
 
   return (
-    <Card className="w-full border border-border bg-card shadow-sm rounded-3xl">
+    <Card className="w-full border border-border bg-card shadow-sm rounded-3xl bg-orange-100 dark:bg-green-900/50">
       <CardHeader>
         <CardTitle className="text-lg font-semibold text-foreground capitalize">
           Nouveaux de {currentMonth} ✨

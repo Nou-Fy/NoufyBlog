@@ -1,11 +1,6 @@
 // src/views/components/TopMembers.tsx
 import React from "react";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { getTopMembers } from "@/app/api/actions/membre.actions";
 
 export default async function TopMembers() {
@@ -14,7 +9,7 @@ export default async function TopMembers() {
   if (!success || members.length === 0) return null;
 
   return (
-    <Card className="w-full bg-card border border-border shadow-sm rounded-3xl">
+    <Card className="w-full bg-card border border-border shadow-sm rounded-3xl bg-green-100 dark:bg-orange-900/50">
       <CardHeader>
         <CardTitle className="text-xl text-foreground">
           Membres du mois 🏆

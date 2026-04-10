@@ -4,8 +4,8 @@ import CommunityStats from "@/components/community/CommunityStats";
 import DiscussionFilters from "@/components/community/DiscussionFilters";
 import RecentDiscussions from "@/components/community/RecentDiscussions";
 import Pagination from "@/components/ui/pagination";
-import TopMembers from "@/components/community/TopMembers"; // à adapter
-import RecentMembres from "@/components/community/RecentMembers"; // à adapter
+import TopMembers from "@/components/community/TopMembers";
+import RecentMembres from "@/components/community/RecentMembers";
 import CollapsibleSidebar from "@/components/community/CollapsibleSidebar";
 import Container from "@/components/common/Container";
 import Section from "@/components/common/Section";
@@ -30,20 +30,24 @@ export default async function CommunautePage({
   );
 
   return (
-    <div className="flex min-h-screen w-full flex-col overflow-x-hidden bg-background text-foreground">
+    // On s'assure que le parent n'empêche pas le sticky (pas d'overflow-hidden ici)
+    <div className="flex min-h-screen w-full flex-col bg-background text-foreground">
       <CommunityHero userId={userId} />
 
-      {/* Ce conteneur fait remonter les stats sur le Hero */}
       <div className="relative z-10 -mt-10">
-        <Container size="full" /* className="!px-4 sm:!px-6 lg:!px-8" */>
+        <Container size="full">
           <CommunityStats />
         </Container>
       </div>
 
       <Section bg="surface-soft" py="lg" className="pt-12 dark:!bg-background">
         <Container size="full">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Colonne gauche : discussions */}
+          {/* IMPORTANT : 
+            1. items-start : empêche la sidebar de s'étirer (indispensable)
+            2. relative : aide au positionnement contextuel
+          */}
+          <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+            {/* Colonne gauche (Contenu long) */}
             <div className="lg:col-span-2">
               <DiscussionFilters />
               <RecentDiscussions
@@ -59,13 +63,18 @@ export default async function CommunautePage({
               </div>
             </div>
 
-            {/* Colonne droite : TopMembers + RecentMembres (Desktop) */}
-            <div className="hidden lg:flex lg:col-span-1 lg:flex-col lg:space-y-4">
-              <TopMembers />
-              <RecentMembres />
-            </div>
+            {/* Colonne droite (Sticky) */}
+            <aside className="hidden lg:block lg:col-span-1 h-full">
+              {/* top-24 : distance du haut (ajuste selon ton header)
+                 self-start : renforce le fait que l'élément ne s'étire pas
+              */}
+              <div className="sticky top-24 self-start space-y-6">
+                <TopMembers />
+                <RecentMembres />
+              </div>
+            </aside>
 
-            {/* Mobile collapsibles */}
+            {/* Mobile */}
             <div className="lg:hidden space-y-4">
               <CollapsibleSidebar
                 title="Membres du mois 🏆"
