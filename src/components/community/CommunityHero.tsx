@@ -57,13 +57,13 @@ export default function CommunityHero({ userId }: CommunityHeroProps) {
   };
 
   return (
-    <section className="bg-emerald-700 overflow-hidden text-white">
+    <section className="bg-emerald-700 dark:bg-emerald-950 overflow-hidden text-white">
       <Container size="full" className="py-16 overflow-hidden">
         <div className="mx-auto max-w-3xl w-full text-center overflow-hidden">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
             L'Espace des Éleveurs Passionnés 🇲🇬
           </h1>
-          <p className="text-xl text-emerald-50 max-w-2xl mx-auto mb-8">
+          <p className="text-xl text-emerald-50 dark:text-emerald-100/90 max-w-2xl mx-auto mb-8">
             Rejoignez plus de 500 éleveurs malgaches. Échangez vos astuces,
             posez vos questions et progressez ensemble.
           </p>

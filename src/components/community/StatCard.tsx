@@ -17,7 +17,7 @@ export default function StatCard({
   textColor,
 }: StatCardProps) {
   return (
-    <Card className="border border-border shadow-sm hover:shadow-md transition-shadow duration-300 bg-card text-card-foreground rounded-2xl overflow-hidden">
+    <Card className="border border-border shadow-sm hover:shadow-md transition-shadow duration-300 bg-card text-card-foreground rounded-2xl overflow-hidden dark:border-white/10 dark:bg-zinc-800/65 backdrop-blur-sm">
       <CardContent className="pl-4 sm:pl-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
         {/* L'icône utilise le bgColor et le textColor pour rester assortie */}
         <div

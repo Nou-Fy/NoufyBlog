@@ -35,12 +35,12 @@ export default async function CommunautePage({
 
       {/* Ce conteneur fait remonter les stats sur le Hero */}
       <div className="relative z-10 -mt-10">
-        <Container size="full" className="!px-4 sm:!px-6 lg:!px-8">
+        <Container size="full" /* className="!px-4 sm:!px-6 lg:!px-8" */>
           <CommunityStats />
         </Container>
       </div>
 
-      <Section bg="surface-soft" py="lg" className="pt-0">
+      <Section bg="surface-soft" py="lg" className="pt-12 dark:!bg-background">
         <Container size="full">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Colonne gauche : discussions */}
