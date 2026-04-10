@@ -1,0 +1,45 @@
+// @/components/articles/articles-detail-modal.tsx
+import { getArticleDetail } from "@/features/articles/service";
+import { X } from "lucide-react";
+import Link from "next/link";
+import { CommentSection } from "./comment-section";
+import { ArticleContent } from "./articles-content";
+
+export default async function ArticleDetailModal({
+  postId,
+  userId, // <-- AJOUT ICI
+  from,
+}: {
+  postId: string;
+  userId: string | null; // <-- AJOUT ICI
+  from?: string;
+}) {
+  const article = await getArticleDetail(postId);
+
+  if (!article) return null;
+
+  const closeHref = from === "profil" ? "/profil" : "/articles";
+
+  return (
+    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+      <Link
+        href={closeHref}
+        className="absolute inset-0 bg-black/55 backdrop-blur-sm"
+      />
+
+      <div className="relative w-full max-w-6xl bg-card border border-border rounded-[2.5rem] shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-3 h-[90vh] animate-in zoom-in-95 duration-200">
+        <Link
+          href={closeHref}
+          className="absolute top-4 right-4 z-20 p-2 bg-card/80 text-card-foreground rounded-full hover:bg-emerald-500 hover:text-white transition-all shadow-sm">
+          <X className="w-5 h-5" />
+        </Link>
+
+        {/* Section Gauche (Article) : On lui passe bien le userId */}
+        <ArticleContent article={article} userId={userId} />
+
+        {/* Section Droite (Commentaires) */}
+        <CommentSection comments={article.comments} postId={article.id} />
+      </div>
+    </div>
+  );
+}

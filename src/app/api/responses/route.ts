@@ -1,20 +1,25 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma"; // Ajuste selon ton projet
+import {
+  createResponseSchema,
+  listResponsesQuerySchema,
+} from "@/features/community/responses.validators";
+import {
+  createResponse,
+  listResponses,
+} from "@/features/community/responses.service";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { content, imageUrl, discussionId, authorId } = body;
+    const parsed = createResponseSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: parsed.error.issues[0].message },
+        { status: 400 },
+      );
+    }
 
-    const newResponse = await prisma.response.create({
-      data: {
-        content,
-        imageUrl: imageUrl || null,
-        discussionId,
-        authorId,
-      },
-    });
-
+    const newResponse = await createResponse(parsed.data);
     return NextResponse.json(newResponse, { status: 201 });
   } catch (error) {
     console.error("Erreur API Responses:", error);
@@ -28,32 +33,14 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
-    const discussionId = searchParams.get("discussionId");
-
-    if (!discussionId) {
-      return NextResponse.json(
-        { error: "Missing discussionId" },
-        { status: 400 },
-      );
+    const parsed = listResponsesQuerySchema.safeParse({
+      discussionId: searchParams.get("discussionId"),
+    });
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Missing discussionId" }, { status: 400 });
     }
 
-    const responses = await prisma.response.findMany({
-      where: {
-        discussionId: discussionId,
-      },
-      include: {
-        author: {
-          select: {
-            nom: true,
-            // image: true, // Vérifie que ce champ existe dans ton modèle User
-          },
-        },
-      },
-      orderBy: {
-        createdAt: "asc",
-      },
-    });
-
+    const responses = await listResponses(parsed.data.discussionId);
     return NextResponse.json(responses);
   } catch (error: any) {
     // 🔥 C'EST ICI QUE TU VERRAS L'ERREUR DANS TON TERMINAL

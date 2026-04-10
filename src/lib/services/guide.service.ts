@@ -1,9 +1,13 @@
 "use server";
 
-import { prisma } from "@/lib/prisma"; // Assure-toi que l'import de ton instance Prisma est correct
 import { GuideFormValues } from "@/lib/validator/guide";
 import { getSessionUser } from "../auth";
 import { revalidatePath } from "next/cache";
+import {
+  createGuideAsAdmin,
+  updateGuideAsAdmin,
+  deleteGuideAsAdmin,
+} from "@/features/guides/service";
 
 /**
  * Vérification interne du rôle Admin
@@ -12,28 +16,13 @@ import { revalidatePath } from "next/cache";
 async function checkAdmin() {
   const userId = await getSessionUser();
   if (!userId) throw new Error("Non connecté");
-
-  const user = await prisma.user.findUnique({
-    where: { id: userId as string },
-  });
-
-  if (user?.role !== "ADMIN") {
-    throw new Error("Action réservée aux administrateurs.");
-  }
-
   return userId as string;
 }
 
 // --- CREATE ---
 export async function createGuide(data: GuideFormValues) {
   const adminId = await checkAdmin();
-
-  const guide = await prisma.guide.create({
-    data: {
-      ...data,
-      authorId: adminId,
-    },
-  });
+  const guide = await createGuideAsAdmin(adminId, data);
 
   revalidatePath("/guides");
   return guide;
@@ -41,15 +30,8 @@ export async function createGuide(data: GuideFormValues) {
 
 // --- UPDATE (La fonction qui manquait) ---
 export async function updateGuide(id: string, data: GuideFormValues) {
-  await checkAdmin();
-
-  const guide = await prisma.guide.update({
-    where: { id },
-    data: {
-      ...data,
-      // On ne change généralement pas l'auteur initial lors d'une modif
-    },
-  });
+  const adminId = await checkAdmin();
+  const guide = await updateGuideAsAdmin(adminId, id, data);
 
   revalidatePath("/guides");
   return guide;
@@ -57,11 +39,8 @@ export async function updateGuide(id: string, data: GuideFormValues) {
 
 // --- DELETE ---
 export async function deleteGuide(id: string) {
-  await checkAdmin();
-
-  await prisma.guide.delete({
-    where: { id },
-  });
+  const adminId = await checkAdmin();
+  await deleteGuideAsAdmin(adminId, id);
 
   revalidatePath("/guides");
   return { success: true };

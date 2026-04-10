@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import GuideForm from "@/views/components/guides/GuideForm";
+import GuideForm from "@/components/guides/GuideForm";
 
 export default function NewGuidePage() {
   const router = useRouter();

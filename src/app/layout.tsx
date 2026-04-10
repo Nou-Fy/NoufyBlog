@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
-import HeaderNew from "@/views/components/HeaderNew";
-import FooterNew from "@/views/components/FooterNew";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 import { cookies } from "next/headers";
 import { ThemeProvider } from "@/context/ThemeContext";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Noufy Blog",
@@ -25,12 +22,12 @@ export default async function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${inter.className} bg-background text-foreground min-h-screen flex flex-col`}>
+        className="bg-background text-foreground min-h-screen flex flex-col">
         <ThemeProvider>
           <AuthProvider>
-            <HeaderNew />
+            <Header />
             <main className="flex-1">{children}</main>
-            <FooterNew isLoggedInServer={hasSession} />
+            <Footer isLoggedInServer={hasSession} />
           </AuthProvider>
         </ThemeProvider>
       </body>

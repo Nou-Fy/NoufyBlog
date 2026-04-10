@@ -1,14 +1,14 @@
 // @/app/profile/page.tsx
 import { getSessionUser, getUserProfileData } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { ProfileHeader } from "@/views/components/profil/ProfileHeader";
-import { ProfileStats } from "@/views/components/ProfilStats";
-import { Card } from "@/views/components/ui/card";
-import Container from "@/views/components/common/Container";
-import Section from "@/views/components/common/Section";
+import { ProfileHeader } from "@/components/profile/ProfileHeader";
+import { ProfileStats } from "@/components/profile/ProfileStats";
+import { Card } from "@/components/ui/card";
+import Container from "@/components/common/Container";
+import Section from "@/components/common/Section";
 import Link from "next/link";
 import { FileText, PlusCircle } from "lucide-react";
-import { UserPostsGrid } from "@/views/components/profil/UserostGrid";
+import { UserPostsGrid } from "@/components/profile/UserPostsGrid";
 
 export default async function ProfilePage() {
   // 1. Auth check

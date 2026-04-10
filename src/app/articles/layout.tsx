@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Container from "@/views/components/common/Container";
+import Container from "@/components/common/Container";
 
 export default function ArticlesLayout({
   children,

@@ -1,9 +1,9 @@
 import { Mail, ShieldCheck, Sprout, Users, Award, MapPin } from "lucide-react";
-import { Card } from "@/views/components/ui/card";
+import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
-import Container from "@/views/components/common/Container";
-import Section from "@/views/components/common/Section";
+import Container from "@/components/common/Container";
+import Section from "@/components/common/Section";
 
 export default function AboutPage() {
   return (

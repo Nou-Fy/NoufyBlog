@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
 import { Plus, Bird } from "lucide-react";
-import { GuideCard } from "@/views/components/guides/GuideCard";
-import GuideForm from "@/views/components/guides/GuideForm";
+import { GuideCard } from "@/components/guides/GuideCard";
+import GuideForm from "@/components/guides/GuideForm";
 import { useRouter } from "next/navigation";
-import EmptyState from "@/views/components/common/EmptyState";
-import Container from "@/views/components/common/Container";
-import Section from "@/views/components/common/Section";
+import EmptyState from "@/components/common/EmptyState";
+import Container from "@/components/common/Container";
+import Section from "@/components/common/Section";
 
 export default function GuideClientPage({
   isAdmin,

@@ -1,22 +1,6 @@
-import { prisma } from "@/lib/prisma";
+import { getForumStats } from "@/features/community/forum-stats.service";
 
 export async function GET() {
-  const [usersCount, discussionsCount, regionsCount, expertsCount] =
-    await Promise.all([
-      prisma.user.count(),
-      prisma.discussion.count(),
-      prisma.user.groupBy({
-        by: ["region"], // si tu as un champ region
-      }),
-      prisma.user.count({
-        where: { role: "ADMIN" }, // exemple pour experts
-      }),
-    ]);
-
-  return Response.json({
-    users: usersCount,
-    discussions: discussionsCount,
-    regions: regionsCount.length,
-    experts: expertsCount,
-  });
+  const stats = await getForumStats();
+  return Response.json(stats);
 }

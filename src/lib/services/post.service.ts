@@ -15,8 +15,14 @@ export async function addComment(
   content: string,
   postId: string,
   authorId: string,
+  imageUrl?: string | null,
 ) {
   return await prisma.comment.create({
-    data: { content, postId, authorId },
+    data: {
+      content,
+      postId,
+      authorId,
+      imageUrl: imageUrl?.trim() ? imageUrl.trim() : null,
+    },
   });
 }

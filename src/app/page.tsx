@@ -7,15 +7,15 @@ import {
   Users,
   ArrowRight,
 } from "lucide-react";
-import { Button } from "@/views/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardContent,
-} from "@/views/components/ui/card";
-import Container from "@/views/components/common/Container";
-import Section from "@/views/components/common/Section";
+} from "@/components/ui/card";
+import Container from "@/components/common/Container";
+import Section from "@/components/common/Section";
 
 export default function HomePage() {
   return (

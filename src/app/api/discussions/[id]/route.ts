@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { archiveDiscussion } from "@/features/community/discussions.service";
 
 export async function DELETE(
   request: Request,
@@ -8,10 +8,7 @@ export async function DELETE(
   try {
     const { id } = await params; // Attendez l'id
 
-    const updated = await prisma.discussion.update({
-      where: { id: id },
-      data: { archived: true },
-    });
+    const updated = await archiveDiscussion(id);
 
     return NextResponse.json(updated);
   } catch (error) {

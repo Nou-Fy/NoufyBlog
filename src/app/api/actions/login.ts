@@ -1,42 +1,21 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
-import { comparePassword } from "@/lib/password";
-import { createSessionToken } from "@/lib/auth";
 import { cookies } from "next/headers";
+import { loginSchema } from "@/features/auth/validators";
+import { login } from "@/features/auth/service";
 
 export async function loginUser(formData: FormData) {
-  const email = (formData.get("email") as string)?.trim().toLowerCase();
-  const password = formData.get("password") as string;
-
-  if (!email || !password) {
-    return { success: false, error: "Tous les champs sont obligatoires" };
-  }
+  const parsed = loginSchema.safeParse({
+    email: (formData.get("email") as string | null)?.trim().toLowerCase(),
+    password: formData.get("password") as string | null,
+  });
+  if (!parsed.success) return { success: false, error: parsed.error.issues[0].message };
 
   try {
-    // 1. Chercher l'utilisateur
-    const user = await prisma.user.findUnique({ where: { email } });
+    const { user, token } = await login(parsed.data);
 
-    if (!user) {
-      return { success: false, error: "Email ou mot de passe incorrect" };
-    }
-
-    // 2. Vérifier le mot de passe
-    const isValid = await comparePassword(password, user.password);
-
-    if (!isValid) {
-      return { success: false, error: "Email ou mot de passe incorrect" };
-    }
-
-    // 3. Créer le Token JWT
-    const sessionToken = await createSessionToken({
-      id: user.id,
-      role: user.role,
-    });
-
-    // 4. Enregistrer le Cookie
     const cookieStore = await cookies();
-    cookieStore.set("session", sessionToken, {
+    cookieStore.set("session", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       maxAge: 60 * 60 * 24 * 7, // 1 semaine
@@ -44,7 +23,6 @@ export async function loginUser(formData: FormData) {
       sameSite: "lax",
     });
 
-    // 5. Retourner les infos pour le Context Client (SANS le mot de passe)
     return {
       success: true,
       user: {
@@ -58,6 +36,6 @@ export async function loginUser(formData: FormData) {
     };
   } catch (error) {
     console.error(error);
-    return { success: false, error: "Erreur technique lors de la connexion" };
+    return { success: false, error: "Email ou mot de passe incorrect" };
   }
 }

@@ -1,8 +1,9 @@
-import { prisma } from "@/lib/prisma";
-import { ArticleContent } from "@/views/components/articles/articles-content";
-import { CommentSection } from "@/views/components/articles/comment-section";
+import { getArticleDetail } from "@/features/articles/service";
+import { ArticleContent } from "@/components/articles/articles-content";
+import { CommentSection } from "@/components/articles/comment-section";
 import { X } from "lucide-react";
 import Link from "next/link";
+import { getSessionUser } from "@/lib/auth";
 
 export default async function ArticleDetailModal({
   params,
@@ -10,16 +11,10 @@ export default async function ArticleDetailModal({
   params: { id: string };
 }) {
   // 1. Récupération des données (Logique d'accès aux données)
-  const article = await prisma.post.findUnique({
-    where: { id: params.id },
-    include: {
-      author: true,
-      comments: {
-        include: { author: true },
-        orderBy: { createdAt: "desc" },
-      },
-    },
-  });
+  const [article, userId] = await Promise.all([
+    getArticleDetail(params.id),
+    getSessionUser(),
+  ]);
 
   if (!article) return null;
 
@@ -42,7 +37,7 @@ export default async function ArticleDetailModal({
           </Link>
 
           {/* SECTION GAUCHE : L'ARTICLE (Responsabilité déportée) */}
-          <ArticleContent article={article} userId={article.author.id} />
+          <ArticleContent article={article} userId={userId} />
 
           {/* SECTION DROITE : COMMENTAIRES (Responsabilité déportée) */}
           <CommentSection comments={article.comments} postId={article.id} />

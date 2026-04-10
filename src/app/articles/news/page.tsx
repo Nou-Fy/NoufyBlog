@@ -1,7 +1,9 @@
 "use client"; // Obligatoire pour utiliser les hooks React
 
+import { useState } from "react";
 import { useActionState } from "react";
 import { createPostAction } from "@/app/api/actions/posts";
+import ImageUpload from "@/components/media/ImageUpload";
 
 export default function NouveauPostPage() {
   /**
@@ -12,6 +14,7 @@ export default function NouveauPostPage() {
   const [state, formAction, isPending] = useActionState(createPostAction, {
     error: "",
   });
+  const [imageUrl, setImageUrl] = useState("");
 
   return (
     <div className="min-h-screen w-full bg-background">
@@ -59,17 +62,11 @@ export default function NouveauPostPage() {
             </select>
           </div>
 
-          <div className="space-y-1">
-            <label className="text-xs font-bold uppercase text-muted-foreground">
-              Lien de l'image (URL)
-            </label>
-            <input
-              name="imageUrl"
-              type="url"
-              className="w-full p-3 bg-card border border-border rounded-xl outline-none focus:border-orange-500"
-              placeholder="https://images.unsplash.com/..."
-            />
-          </div>
+          <ImageUpload
+            label="Image de l'article (URL ou fichier)"
+            onUpload={(url) => setImageUrl(url)}
+          />
+          <input type="hidden" name="imageUrl" value={imageUrl} />
 
           <div className="space-y-1">
             <label className="text-xs font-bold uppercase text-muted-foreground">

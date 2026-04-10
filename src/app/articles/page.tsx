@@ -2,15 +2,15 @@
 import Link from "next/link";
 import { Inbox, X } from "lucide-react";
 import { getSessionUser } from "@/lib/auth";
-import ArticleDetailModal from "@/views/components/articles/articles-detail-modal";
+import ArticleDetailModal from "@/components/articles/articles-detail-modal";
 import NouveauPostPage from "./news/page";
 import { getArticles } from "@/lib/services/articles.service";
-import ArticlesFilters from "@/views/components/articles/articles-filter";
-import CollapsibleFilters from "@/views/components/articles/CollapsibleFilters";
-import { ArticleCard } from "@/views/components/articles/ArticleCard";
-import Container from "@/views/components/common/Container";
-import Section from "@/views/components/common/Section";
-import EmptyState from "@/views/components/common/EmptyState";
+import ArticlesFilters from "@/components/articles/articles-filter";
+import CollapsibleFilters from "@/components/articles/CollapsibleFilters";
+import { ArticleCard } from "@/components/articles/ArticleCard";
+import Container from "@/components/common/Container";
+import Section from "@/components/common/Section";
+import EmptyState from "@/components/common/EmptyState";
 // On importe la carte pour la grille, pas le contenu complet
 
 export default async function ArticlesPage({

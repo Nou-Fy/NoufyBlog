@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { archiveResponseParamsSchema } from "@/features/community/responses.validators";
+import { archiveResponse } from "@/features/community/responses.service";
 
 export async function DELETE(
   request: Request,
@@ -7,11 +8,12 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params; // On attend l'extraction de l'ID
+    const parsed = archiveResponseParamsSchema.safeParse({ id });
+    if (!parsed.success) {
+      return NextResponse.json({ error: "ID invalide" }, { status: 400 });
+    }
 
-    const updatedResponse = await prisma.response.update({
-      where: { id: id },
-      data: { archived: true },
-    });
+    const updatedResponse = await archiveResponse(parsed.data.id);
 
     return NextResponse.json(updatedResponse);
   } catch (error: any) {

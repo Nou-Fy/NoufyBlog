@@ -1,14 +1,14 @@
 import { getSessionUser } from "@/lib/auth";
-import CommunityHero from "@/views/components/community/CommunityHero";
-import CommunityStats from "@/views/components/community/CommunityStats";
-import DiscussionFilters from "@/views/components/community/DiscussionFilters";
-import RecentDiscussions from "@/views/components/community/RecentDiscussions";
-import Pagination from "@/views/components/ui/pagination";
-import TopMembers from "@/views/components/community/TopMembers"; // à adapter
-import RecentMembres from "@/views/components/community/RecentMembers"; // à adapter
-import CollapsibleSidebar from "@/views/components/community/CollapsibleSidebar";
-import Container from "@/views/components/common/Container";
-import Section from "@/views/components/common/Section";
+import CommunityHero from "@/components/community/CommunityHero";
+import CommunityStats from "@/components/community/CommunityStats";
+import DiscussionFilters from "@/components/community/DiscussionFilters";
+import RecentDiscussions from "@/components/community/RecentDiscussions";
+import Pagination from "@/components/ui/pagination";
+import TopMembers from "@/components/community/TopMembers"; // à adapter
+import RecentMembres from "@/components/community/RecentMembers"; // à adapter
+import CollapsibleSidebar from "@/components/community/CollapsibleSidebar";
+import Container from "@/components/common/Container";
+import Section from "@/components/common/Section";
 import { getPaginatedDiscussions } from "../api/actions/discussion.actions";
 import { Trophy, Sparkles } from "lucide-react";
 

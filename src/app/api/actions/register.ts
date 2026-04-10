@@ -1,52 +1,28 @@
 "use server";
 
-import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
-import { hashPassword } from "@/lib/password";
-import { createSessionToken } from "@/lib/auth";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { cookies } from "next/headers";
+import { registerSchema } from "@/features/auth/validators";
+import { register } from "@/features/auth/service";
 
 export async function registerUser(
   prevState: { error?: string } | null,
   formData: FormData,
 ) {
-  const firstName = (formData.get("firstName") as string)?.trim();
-  const lastName = (formData.get("lastName") as string)?.trim();
-  const email = (formData.get("email") as string)?.trim().toLowerCase();
-  const password = formData.get("password") as string;
-
-  if (!firstName || !lastName || !email || !password) {
-    return { error: "Tous les champs sont obligatoires" };
-  }
+  const parsed = registerSchema.safeParse({
+    prenom: (formData.get("firstName") as string | null)?.trim(),
+    nom: (formData.get("lastName") as string | null)?.trim(),
+    email: (formData.get("email") as string | null)?.trim().toLowerCase(),
+    password: formData.get("password") as string | null,
+  });
+  if (!parsed.success) return { error: parsed.error.issues[0].message };
 
   try {
-    const existingUser = await prisma.user.findUnique({ where: { email } });
-
-    if (existingUser) {
-      return { error: "Un utilisateur avec cet email existe déjà" };
-    }
-
-    const hashedPassword = await hashPassword(password);
-
-    const user = await prisma.user.create({
-      data: {
-        prenom: firstName,
-        nom: lastName,
-        email,
-        password: hashedPassword,
-      },
-    });
-
-    // 🔥 AUTO LOGIN après inscription
-    const sessionToken = await createSessionToken({
-      id: user.id,
-      role: user.role,
-    });
+    const { user, token } = await register(parsed.data);
 
     const cookieStore = await cookies();
 
-    cookieStore.set("session", sessionToken, {
+    cookieStore.set("session", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       maxAge: 60 * 60 * 24 * 7,
@@ -71,6 +47,6 @@ export async function registerUser(
     }
 
     console.error(error);
-    return { error: "Une erreur est survenue lors de l'inscription" };
+    return { error: (error as Error)?.message || "Une erreur est survenue lors de l'inscription" };
   }
 }
