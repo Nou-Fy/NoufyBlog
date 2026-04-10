@@ -9,7 +9,14 @@ export function useDiscussionResponses(discussionId: string) {
     try {
       const res = await fetch(`/api/responses?discussionId=${discussionId}`);
       const data = await res.json();
-      setResponses((Array.isArray(data) ? data : []).filter((r: any) => !r.archived));
+      setResponses(
+        (Array.isArray(data) ? data : [])
+          .filter((r: any) => !r.archived)
+          .sort(
+            (a, b) =>
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+          ),
+      );
     } catch (e) {
       console.error("Erreur chargement:", e);
       setResponses([]);
@@ -20,7 +27,9 @@ export function useDiscussionResponses(discussionId: string) {
 
   const archiveResponse = useCallback(
     async (responseId: string) => {
-      const res = await fetch(`/api/responses/${responseId}`, { method: "DELETE" });
+      const res = await fetch(`/api/responses/${responseId}`, {
+        method: "DELETE",
+      });
       if (!res.ok) {
         const errorData = await res.json().catch(() => null);
         throw new Error(errorData?.error || "Erreur lors de la suppression");
@@ -32,4 +41,3 @@ export function useDiscussionResponses(discussionId: string) {
 
   return { responses, loading, refresh, archiveResponse };
 }
-

@@ -23,9 +23,8 @@ export default function DiscussionDrawer({
   userId,
 }: DiscussionDrawerProps) {
   const [mounted, setMounted] = useState(false);
-  const { responses, loading, refresh, archiveResponse } = useDiscussionResponses(
-    discussion.id,
-  );
+  const { responses, loading, refresh, archiveResponse } =
+    useDiscussionResponses(discussion.id);
 
   useEffect(() => {
     setMounted(true);
@@ -43,7 +42,10 @@ export default function DiscussionDrawer({
   return createPortal(
     <div className="fixed inset-0 z-[100] flex justify-end overflow-x-hidden">
       {/* Overlay */}
-      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
+      <div
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+        onClick={onClose}
+      />
 
       {/* Panel */}
       <div className="relative w-full max-w-md h-full bg-card border border-border shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
