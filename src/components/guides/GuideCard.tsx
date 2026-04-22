@@ -61,21 +61,21 @@ export function GuideCard({ guide, isAdmin, onRefresh }: GuideCardProps) {
           <div className="p-4 rounded-2xl bg-card w-fit mb-5 shadow-sm group-hover:scale-110 transition-transform">
             <Bird className="w-10 h-10 text-emerald-600" />
           </div>
-          <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">
+          <div className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">
             {guide.badge}
           </div>
-          <CardTitle className="text-3xl text-foreground leading-tight">
+          <CardTitle className="text-3xl md:text-[2rem] text-foreground leading-tight">
             {guide.title}
           </CardTitle>
         </CardHeader>
 
         <CardContent className="p-6 pt-2 flex flex-col flex-1 space-y-4">
-          <p className="text-muted-foreground text-base leading-relaxed line-clamp-4 flex-1">
+          <p className="text-muted-foreground text-lg leading-8 line-clamp-4 flex-1">
             {guide.description}
           </p>
           <button
             onClick={openModal}
-            className="flex items-center text-base font-bold text-emerald-700 hover:text-emerald-800 transition-colors mt-auto">
+            className="flex items-center text-lg font-bold text-emerald-700 hover:text-emerald-800 transition-colors mt-auto">
             Lire le guide <ArrowRight className="ml-2 w-5 h-5" />
           </button>
         </CardContent>

@@ -9,7 +9,7 @@ export function DiscussionHeader({
 }) {
   return (
     <div className="bg-card/80 p-5 rounded-2xl border border-border shadow-sm mb-8">
-      <p className="text-card-foreground font-medium leading-relaxed mb-4">
+      <p className="text-card-foreground text-base md:text-lg font-medium leading-relaxed mb-4">
         {discussion.content}
       </p>
 
@@ -19,14 +19,14 @@ export function DiscussionHeader({
         <ImageFrame
           src={discussion.imageUrl}
           alt={`Illustration de ${discussion.author?.nom}`}
-          ratio="aspect-[4/3]"
+          ratio="aspect-[16/10]"
           className="rounded-xl border border-border bg-muted"
           imgClassName="shadow-inner"
         />
       </div>
       )}
 
-      <div className="flex items-center gap-4 text-xs text-muted-foreground">
+      <div className="flex items-center gap-4 text-sm text-muted-foreground">
         <span className="flex items-center gap-1.5 font-semibold text-card-foreground">
           <User className="w-3.5 h-3.5" /> {discussion.author?.nom || "Éleveur"}
         </span>

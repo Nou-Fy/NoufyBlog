@@ -48,7 +48,7 @@ export function ArticleContent({ article, userId }: ArticleContentProps) {
         <ImageFrame
           src={article.imageUrl ?? undefined}
           alt={article.title}
-          ratio="aspect-[4/3]"
+          ratio="aspect-[16/9]"
           className="rounded-[2rem] mb-8 shadow-md"
         />
 
@@ -59,17 +59,17 @@ export function ArticleContent({ article, userId }: ArticleContentProps) {
         )}
       </div>
 
-      <div className="max-w-3xl mx-auto space-y-4">
-        <span className="bg-emerald-100 text-emerald-700 text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-widest">
+      <div className="max-w-3xl mx-auto space-y-5">
+        <span className="bg-emerald-100 text-emerald-700 text-sm font-black px-4 py-1.5 rounded-full uppercase tracking-widest">
           {article.section}
         </span>
 
-        <h2 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1]">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground leading-[1.1]">
           {article.title}
         </h2>
 
         <div className="flex items-center justify-between py-6 border-y border-border/60">
-          <div className="flex items-center gap-6 text-sm text-muted-foreground">
+          <div className="flex items-center gap-6 text-base text-muted-foreground">
             <div className="flex items-center gap-2 font-medium text-foreground">
               <div className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
                 <User className="w-4 h-4" />
@@ -90,7 +90,7 @@ export function ArticleContent({ article, userId }: ArticleContentProps) {
           </div>
         </div>
 
-        <p className="text-muted-foreground leading-relaxed text-lg whitespace-pre-wrap pb-10">
+        <p className="text-muted-foreground leading-8 text-lg md:text-xl whitespace-pre-wrap pb-10">
           {article.content}
         </p>
       </div>
