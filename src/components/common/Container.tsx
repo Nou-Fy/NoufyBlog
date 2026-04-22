@@ -23,7 +23,7 @@ export default function Container({
     lg: "max-w-4xl",
     xl: "max-w-5xl",
     "2xl": "max-w-7xl",
-    full: "max-w-full",
+    full: "max-w-screen-2xl",
   };
 
   return (

@@ -57,7 +57,7 @@ export default function DiscussionItem({
             : "opacity-70 cursor-not-allowed"
         }`}>
         <div className="flex justify-between items-start mb-3">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-500 bg-card/80 px-2 py-1 rounded">
+          <span className="text-xs font-bold uppercase tracking-widest text-emerald-500 bg-card/80 px-2 py-1 rounded">
             Discussion
           </span>
 
@@ -76,7 +76,7 @@ export default function DiscussionItem({
         </div>
 
         <h3
-          className={`font-bold text-foreground mb-3 line-clamp-2 ${
+          className={`text-lg font-bold text-foreground mb-3 line-clamp-2 leading-snug ${
             isAuthenticated ? "group-hover:text-emerald-500" : ""
           }`}>
           {discussion.content}
@@ -87,7 +87,7 @@ export default function DiscussionItem({
             <ImageFrame
               src={discussion.imageUrl}
               alt={`Illustration de ${discussion.author?.nom}`}
-              ratio="aspect-[4/3]"
+              ratio="aspect-[16/10]"
               className="rounded-xl border border-border bg-muted"
               imgClassName="shadow-inner"
             />
@@ -95,13 +95,13 @@ export default function DiscussionItem({
         )}
 
         <div className="flex items-center justify-between mt-4 pt-4 border-t border-border/60">
-          <p className="text-xs text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             Par{" "}
             <span className="font-semibold text-card-foreground">
               {discussion.author.nom || "Éleveur"}
             </span>
           </p>
-          <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-500">
+          <div className="flex items-center gap-1.5 text-sm font-bold text-emerald-500">
             <MessageSquare className="w-4 h-4" />
             <span>{discussion._count.comments} réponses</span>
           </div>

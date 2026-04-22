@@ -102,7 +102,7 @@ export default function DiscussionDrawer({
                     )}
                   </div>
 
-                  <p className="text-sm text-muted-foreground ml-8 whitespace-pre-wrap">
+                  <p className="text-base text-muted-foreground leading-7 ml-8 whitespace-pre-wrap">
                     {resp.content}
                   </p>
 
@@ -111,7 +111,7 @@ export default function DiscussionDrawer({
                       <ImageFrame
                         src={resp.imageUrl}
                         alt="Illustration"
-                        ratio="aspect-[4/3]"
+                        ratio="aspect-[16/10]"
                         className="rounded-xl border border-border bg-card/80"
                         imgClassName="p-0"
                       />

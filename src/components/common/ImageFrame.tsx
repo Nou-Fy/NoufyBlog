@@ -6,6 +6,7 @@ interface ImageFrameProps {
   ratio?: string;
   className?: string;
   imgClassName?: string;
+  fit?: "cover" | "contain";
   placeholder?: string;
   children?: React.ReactNode;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
@@ -14,9 +15,10 @@ interface ImageFrameProps {
 export function ImageFrame({
   src,
   alt,
-  ratio = "aspect-[16/9]",
+  ratio = "aspect-[16/10]",
   className = "",
   imgClassName = "",
+  fit = "cover",
   placeholder = "/api/placeholder/400/320",
   children,
   imgProps,
@@ -30,7 +32,7 @@ export function ImageFrame({
       <img
         src={initialSrc}
         alt={alt}
-        className={`absolute inset-0 w-full h-full object-contain transition-all ${imgClassName}`}
+        className={`absolute inset-0 h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"} transition-all duration-500 ${imgClassName}`}
         loading="lazy"
         {...imgProps}
         onError={(event) => {

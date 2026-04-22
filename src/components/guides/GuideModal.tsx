@@ -36,7 +36,7 @@ export function GuideModal({ guide, isOpen, onClose }: GuideModalProps) {
           <DialogTitle className="text-3xl font-bold text-foreground">
             {guide.title}
           </DialogTitle>
-          <p className="text-sm text-muted-foreground mt-2 italic">
+          <p className="text-base text-muted-foreground mt-2 italic leading-7">
             {guide.description}
           </p>
         </DialogHeader>
@@ -48,7 +48,7 @@ export function GuideModal({ guide, isOpen, onClose }: GuideModalProps) {
               on utilise 'whitespace-pre-wrap'. 
               Si c'est du HTML provenant d'un éditeur, utilise dangerouslySetInnerHTML.
             */}
-            <div className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
+            <div className="text-base md:text-lg text-muted-foreground leading-8 whitespace-pre-wrap">
               {guide.content}
             </div>
           </div>
