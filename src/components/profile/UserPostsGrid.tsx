@@ -25,12 +25,12 @@ export function UserPostsGrid({ posts }: { posts: any[] }) {
           href={`/articles?view=${post.id}&from=profil`}
           className="h-full">
           <Card className="group border-none shadow-sm hover:shadow-xl transition-all duration-300 rounded-[2rem] bg-card overflow-hidden h-full flex flex-col">
-            <div className="relative w-full h-48 bg-card/80 overflow-hidden">
+            <div className="relative w-full h-40 md:h-44 bg-card/80 overflow-hidden">
               {post.imageUrl ? (
                 <ImageFrame
                   src={post.imageUrl}
                   alt={post.title}
-                  ratio="aspect-[4/3]"
+                  ratio="aspect-[16/10]"
                   className="h-full"
                   imgClassName="group-hover:scale-105 transition-all"
                 />
@@ -40,11 +40,13 @@ export function UserPostsGrid({ posts }: { posts: any[] }) {
                 </div>
               )}
             </div>
-            <div className="p-5 flex flex-col gap-2 flex-1">
-              <span className="text-[10px] font-black text-emerald-600 uppercase">
+            <div className="p-5 flex flex-col gap-3 flex-1">
+              <span className="text-xs font-black text-emerald-600 uppercase tracking-wide">
                 {post.section}
               </span>
-              <h3 className="font-bold line-clamp-2 flex-1">{post.title}</h3>
+              <h3 className="text-base md:text-lg font-bold line-clamp-2 flex-1 leading-snug">
+                {post.title}
+              </h3>
             </div>
           </Card>
         </Link>

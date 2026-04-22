@@ -23,20 +23,20 @@ export default function HomePage() {
       {/* HERO SECTION */}
       <Section bg="background" py="lg">
         <Container size="full">
-          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
             {/* Text Content */}
-            <div className="space-y-4 order-2 md:order-1">
-              <div className="space-y-4">
-                <span className="inline-block px-4 py-2 rounded-full bg-orange-100 text-orange-600 text-xs font-bold uppercase tracking-wider">
+            <div className="space-y-5 order-2 md:order-1">
+              <div className="space-y-5">
+                <span className="inline-block px-4 py-2 rounded-full bg-orange-100 text-orange-600 text-sm font-bold uppercase tracking-wider">
                   ✨ Mpiompy Akoho Malagasy
                 </span>
-                <h1 className="text-5xl md:text-6xl font-black tracking-tight text-foreground leading-tight">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-foreground leading-tight">
                   Réussissez votre{" "}
                   <span className="text-emerald-600">élevage</span> de poules
                 </h1>
               </div>
 
-              <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
+              <p className="text-lg md:text-xl text-muted-foreground leading-8 max-w-xl">
                 Bienvenue sur{" "}
                 <span className="font-bold text-orange-600">Noufy Blog</span>,
                 la première ressource éducative dédiée aux éleveurs malgaches.
@@ -47,7 +47,7 @@ export default function HomePage() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all group">
+                  className="bg-emerald-600 hover:bg-orange-500 text-white shadow-lg hover:shadow-xl transition-all group">
                   <Link href="/articles" className="flex items-center gap-2">
                     Lire les articles
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -64,7 +64,7 @@ export default function HomePage() {
             </div>
 
             {/* Image */}
-            <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl border-8 border-white order-1 md:order-2">
+            <div className="relative aspect-[5/4] md:aspect-[6/5] rounded-3xl overflow-hidden shadow-2xl border-8 border-white order-1 md:order-2">
               <Image
                 src="/hero-chickens.jpg"
                 alt="Poules en plein air à Madagascar"
@@ -83,13 +83,13 @@ export default function HomePage() {
           <div className="space-y-4">
             {/* Header */}
             <div className="text-center space-y-4 max-w-2xl mx-auto">
-              <span className="inline-block text-orange-600 text-sm font-bold uppercase tracking-widest">
+              <span className="inline-block text-orange-600 text-base font-bold uppercase tracking-widest">
                 Notre Mission
               </span>
-              <h2 className="text-4xl md:text-5xl font-black text-foreground">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground">
                 Un guide complet pour chaque étape
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-lg md:text-xl text-muted-foreground leading-8">
                 Que vous débutiez avec quelques poules ou gériez une ferme
                 professionnelle, nous vous accompagnons avec des contenus
                 adaptés à Madagascar.
@@ -154,6 +154,7 @@ export default function HomePage() {
                   </Card>
                 );
               })}
+              
             </div>
           </div>
         </Container>
@@ -165,7 +166,7 @@ export default function HomePage() {
           <div className="space-y-4">
             {/* Detail 1 */}
             <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg group">
+              <div className="relative aspect-[16/10] rounded-3xl overflow-hidden shadow-lg group">
                 <Image
                   src="/alimentation.jpg"
                   alt="Alimentation des poules"
@@ -173,12 +174,12 @@ export default function HomePage() {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <div className="space-y-4">
-                <h3 className="text-3xl md:text-4xl font-black text-foreground">
+              <div className="space-y-5">
+                <h3 className="text-3xl md:text-4xl font-black text-foreground leading-tight">
                   Optimisez l'
                   <span className="text-orange-600">alimentation</span>
                 </h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-lg md:text-xl text-muted-foreground leading-8">
                   L'alimentation représente le plus gros coût de l'élevage. Nos
                   articles détaillés vous aident à formule des rations
                   équilibrées à base de produits locaux, maximisant la
@@ -186,7 +187,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="/articles"
-                  className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 group">
+                  className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-orange-500 group">
                   Lire les articles
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -195,12 +196,12 @@ export default function HomePage() {
 
             {/* Detail 2 */}
             <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-              <div className="space-y-4 order-2 md:order-1">
-                <h3 className="text-3xl md:text-4xl font-black text-foreground">
+              <div className="space-y-5 order-2 md:order-1">
+                <h3 className="text-3xl md:text-4xl font-black text-foreground leading-tight">
                   Protégez votre cheptel contre les{" "}
                   <span className="text-red-600">maladies</span>
                 </h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-lg md:text-xl text-muted-foreground leading-8">
                   Les épidémies peuvent décimer un élevage en quelques jours.
                   Nos guides vous apprennent à reconnaître les symptômes tôt et
                   à appliquer une prophylaxie efficace adaptée à votre région.
@@ -212,7 +213,7 @@ export default function HomePage() {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg group order-1 md:order-2">
+              <div className="relative aspect-[16/10] rounded-3xl overflow-hidden shadow-lg group order-1 md:order-2">
                 <Image
                   src="/sante.jpg"
                   alt="Soins vétérinaires"

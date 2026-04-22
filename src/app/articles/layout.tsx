@@ -13,10 +13,10 @@ export default function ArticlesLayout({
         <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
           {/* Bloc de Gauche : Empile les deux textes verticalement */}
           <div className="space-y-2 text-center md:text-left flex-1">
-            <span className="text-emerald-600 font-bold tracking-widest text-sm uppercase block">
+            <span className="text-emerald-600 font-bold tracking-widest text-base uppercase block">
               Le Blog des Éleveurs Malagasy
             </span>
-            <h1 className="text-4xl font-extrabold text-foreground tracking-tight">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-foreground tracking-tight">
               Dernières <span className="text-orange-600">Publications</span>
             </h1>
           </div>
