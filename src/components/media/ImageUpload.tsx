@@ -65,7 +65,7 @@ export default function ImageUpload({
             ) : (
               <Upload className="w-4 h-4" />
             )}
-          </button>
+          </button> 
         </div>
 
         <input
