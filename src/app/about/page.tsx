@@ -1,9 +1,18 @@
-import { Mail, ShieldCheck, Sprout, Users, Award, MapPin } from "lucide-react";
+import {
+  Mail,
+  ShieldCheck,
+  Sprout,
+  Users,
+  Award,
+  MapPin,
+  UserCheck,
+} from "lucide-react";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/common/Container";
 import Section from "@/components/common/Section";
+import ContactForm from "@/components/nous_contacter/we-contacter";
 
 export default function AboutPage() {
   return (
@@ -138,6 +147,12 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
+        </Container>
+      </Section>
+
+      <Section bg="white" py="lg">
+        <Container size="full">
+          <ContactForm />
         </Container>
       </Section>
     </div>

@@ -8,12 +8,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import Container from "@/components/common/Container";
 import Section from "@/components/common/Section";
 
@@ -43,21 +38,26 @@ export default function HomePage() {
                 Conseils pratiques, guides complets et communauté engagée.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row gap-5 pt-6">
+                {/* Bouton Principal : Émeraude doux avec interaction subtile */}
                 <Button
                   asChild
                   size="lg"
-                  className="bg-emerald-600 hover:bg-orange-500 text-white shadow-lg hover:shadow-xl transition-all group">
-                  <Link href="/articles" className="flex items-center gap-2">
+                  variant="ghost"
+                  className="!bg-emerald-500 !text-white font-semibold tracking-tight px-8 hover:scale-125 hover:opacity-100 rounded-xl shadow-sm hover:text-orange-500 hover:shadow-md transition-all duration-300 ease-in-out group">
+                  <Link href="/articles" className="flex items-center gap-2.5">
                     Lire les articles
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    {/* L'icône bouge très légèrement, de manière fluide */}
+                    <ArrowRight className="w-4 h-4 opacity-80 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
                   </Link>
                 </Button>
+
+                {/* Bouton Secondaire : Minimaliste avec fond teinté au survol */}
                 <Button
                   asChild
                   size="lg"
-                  variant="outline"
-                  className="border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-50">
+                  variant="ghost"
+                  className="!text-emerald-700 font-medium px-8 rounded-xl hover:scale-125 hover:!bg-emerald-50/80 transition-colors duration-300">
                   <Link href="/about">En savoir plus</Link>
                 </Button>
               </div>
@@ -154,7 +154,6 @@ export default function HomePage() {
                   </Card>
                 );
               })}
-              
             </div>
           </div>
         </Container>
@@ -220,6 +219,35 @@ export default function HomePage() {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+              <div className="relative aspect-[16/10] rounded-3xl overflow-hidden shadow-lg group">
+                <Image
+                  src="/communaute.jpg"
+                  alt="Échanges entre éleveurs"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+
+              <div className="space-y-5">
+                <h3 className="text-3xl md:text-4xl font-black text-foreground leading-tight">
+                  Échangez avec une{" "}
+                  <span className="text-emerald-600">communauté</span> solidaire
+                </h3>
+                <p className="text-lg md:text-xl text-muted-foreground leading-8">
+                  Ne restez plus jamais seul face à un défi. Rejoignez des amis
+                  d'éleveurs pour partager vos expériences, poser vos questions
+                  et trouver des solutions concrètes basées sur le terrain.
+                </p>
+                <Link
+                  href="/communaute"
+                  className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 group">
+                  Rejoindre la discussion
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
             </div>
           </div>
